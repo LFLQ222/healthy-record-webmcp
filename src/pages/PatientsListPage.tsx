@@ -20,6 +20,8 @@ import { listMyPatients, type UserBasic } from '../services/ehrService';
 import { BRAND, glassSx } from '../components/common/designTokens';
 import { LanguageToggle } from '../components/common/LanguageToggle';
 import { useAuth } from '../context/AuthContext';
+import { PatientListAgentTools } from '../webmcp/PatientListAgentTools';
+import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
 
 /**
  * Doctor's patient list — the demo's landing view. Opening a chart navigates
@@ -91,9 +93,11 @@ export default function PatientsListPage() {
               color: BRAND.primary,
             }}
           />
+          <WebMcpStatusChip />
           <LanguageToggle />
         </Stack>
       </Paper>
+      <PatientListAgentTools />
 
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Typography variant="h5" sx={{ fontWeight: 600, letterSpacing: '-0.02em', mb: 0.5 }}>

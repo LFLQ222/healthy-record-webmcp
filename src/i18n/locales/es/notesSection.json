@@ -9,7 +9,11 @@
     "draft": "Borrador",
     "amended": "Firmada · editada"
   },
+  "action": {
+    "signDraft": "Firmar"
+  },
   "tooltip": {
+    "signDraft": "Revisar y firmar este borrador",
     "viewPdf": "Ver PDF",
     "openTab": "Abrir en pestaña",
     "signedCannotDelete": "Una nota firmada no puede eliminarse (NOM-004)",
@@ -97,6 +101,8 @@
     "deleting": "Eliminando…"
   },
   "toast": {
+    "draftSigned": "Nota firmada y agregada al expediente.",
+    "signError": "No se pudo firmar la nota.",
     "noteDeleted": "Nota eliminada",
     "deleteFailed": "No se pudo eliminar la nota",
     "saveFailed": "No se pudo guardar la nota",

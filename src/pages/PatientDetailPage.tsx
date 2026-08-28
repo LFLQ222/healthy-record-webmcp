@@ -62,6 +62,8 @@ import { ResultsSection } from '../components/patient/sections/ResultsSection';
 import { HealthSummarySection } from '../components/patient/sections/HealthSummarySection';
 import { AnalyteGraphProvider } from '../components/patient/AnalyteGraphProvider';
 import { LanguageToggle } from '../components/common/LanguageToggle';
+import { ChartAgentTools } from '../webmcp/ChartAgentTools';
+import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
 
 const KNOWN_SECTIONS = ['summary', 'notes', 'vitals', 'labs', 'results'];
 
@@ -369,6 +371,7 @@ export default function PatientDetailPage() {
           </Box>
 
           <Stack direction="row" spacing={1} alignItems="center">
+            <WebMcpStatusChip />
             <LanguageToggle />
             {!isMobile && (
               <Button
@@ -460,6 +463,11 @@ export default function PatientDetailPage() {
               <Box sx={{ pb: 4 }}>
                 {/* Section switch */}
                 <AnalyteGraphProvider patientId={id as string}>
+                  <ChartAgentTools
+                    patientId={id as string}
+                    patientName={basePatient ? `${basePatient.firstName} ${basePatient.lastName}` : null}
+                    onNavigateSection={setSection}
+                  />
                   {section === 'summary' && data && (
                     <HealthSummarySection data={data} patientId={id as string} onRegenerate={regenerateHealthSummary} />
                   )}

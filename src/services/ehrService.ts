@@ -739,6 +739,21 @@ export async function createDraftNote(
   return draft;
 }
 
+/**
+ * Demo-only: the physician approves an agent-drafted note from the Notes
+ * section. The agent can create DRAFTs; only this human action signs them.
+ */
+export async function signDraftNote(noteId: string): Promise<EvolutionNoteMinimal> {
+  await delay(300);
+  const n = NOTES.find((x) => x.id === noteId);
+  if (!n) throw httpError(404, 'Nota no encontrada');
+  if (n.status === 'DRAFT') {
+    n.status = 'SIGNED';
+    n.signedAt = nowIso();
+  }
+  return structuredClone(n);
+}
+
 export async function updateEvolutionNote(
   noteId: string,
   input: UpdateEvolutionNoteInput,

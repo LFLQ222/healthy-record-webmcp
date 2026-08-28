@@ -57,6 +57,7 @@ import {
   getEvolutionNote,
   listEvolutionNotes,
   openEvolutionPdf,
+  signDraftNote,
   signEvolutionNote,
   updateEvolutionNote,
 } from '../../../services/ehrService';
@@ -568,7 +569,41 @@ export default function NotesSection({ patientId }: NotesSectionProps) {
                         </Typography>
                       </Stack>
                     </Box>
-                    <Stack direction="row" spacing={0.25} sx={{ flexShrink: 0 }}>
+                    <Stack direction="row" spacing={0.25} sx={{ flexShrink: 0 }} alignItems="center">
+                      {!isSigned && (
+                        <Tooltip title={t('tooltip.signDraft')}>
+                          <Button
+                            size="small"
+                            startIcon={<VerifiedIcon sx={{ fontSize: 14 }} />}
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              try {
+                                await signDraftNote(note.id);
+                                notify({ message: t('toast.draftSigned'), severity: 'success' });
+                                queryClient.invalidateQueries({ queryKey: ['evolutionNotes', patientId] });
+                              } catch {
+                                notify({ message: t('toast.signError'), severity: 'error' });
+                              }
+                            }}
+                            sx={{
+                              px: 1.1,
+                              py: 0.2,
+                              minWidth: 0,
+                              mr: 0.5,
+                              fontSize: '0.72rem',
+                              fontWeight: 600,
+                              textTransform: 'none',
+                              color: '#fff',
+                              bgcolor: BRAND.success,
+                              borderRadius: '8px',
+                              boxShadow: 'none',
+                              '&:hover': { bgcolor: '#15803D', boxShadow: 'none' },
+                            }}
+                          >
+                            {t('action.signDraft')}
+                          </Button>
+                        </Tooltip>
+                      )}
                       <Tooltip title={isAuthor ? t('tooltip.edit') : t('tooltip.notAuthor')}>
                         <span>
                           <IconButton

@@ -9,7 +9,11 @@
     "draft": "Draft",
     "amended": "Signed · edited"
   },
+  "action": {
+    "signDraft": "Sign"
+  },
   "tooltip": {
+    "signDraft": "Review and sign this draft",
     "viewPdf": "View PDF",
     "openTab": "Open in tab",
     "signedCannotDelete": "A signed note cannot be deleted (NOM-004)",
@@ -97,6 +101,8 @@
     "deleting": "Deleting…"
   },
   "toast": {
+    "draftSigned": "Note signed and added to the record.",
+    "signError": "Could not sign the note.",
     "noteDeleted": "Note deleted",
     "deleteFailed": "Could not delete the note",
     "saveFailed": "Could not save the note",
