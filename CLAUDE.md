@@ -193,7 +193,7 @@ Cada paso tiene que **verse ocurrir**. Estados de carga deliberados, no instant�
 
 La prueba que importa no es que la tool corra. Es que **el agente escoja la tool correcta** desde lenguaje natural. Si no la escoge, el problema está en el `description` o en el `inputSchema`, no en el código.
 
-**✅ Validado con agente real el 28-ago-2026** (Gemini vía Model Context Tool Inspector oficial, Chrome 151 + flag): "What changed since the last visit?" → `get_chart_summary` · "Show me the creatinine trend" → `plot_lab_trend` (la pantalla navegó y abrió la gráfica sola) · "Draft a note about this finding" → `draft_note` (borrador en Notas → botón Sign). Las tres a la primera, sin ajustar descriptions.
+**✅ Validado con agente real el 28-ago-2026** (Gemini vía Model Context Tool Inspector oficial, Chrome 151 + flag): "What changed since the last visit?" → `get_chart_summary` · "Show me the creatinine trend" → `plot_lab_trend` (la pantalla navegó y abrió la gráfica sola) · "Draft a note about this finding" → `draft_note` (borrador en Notas → botón Sign). Las tres a la primera, sin ajustar descriptions. El 28-ago (más tarde): "Highlight everything out of range" → `highlight_findings` también a la primera. 6/6 tools validadas.
 
 Alternativa: navegador interno de la app de escritorio de ChatGPT, con GPT-5.6 Sol o Terra (Luna trae WebMCP apagado). Los jueces pueden usar cualquiera de las dos, así que si se puede, probar en ambas.
 
