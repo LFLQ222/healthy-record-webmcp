@@ -12,6 +12,7 @@
  * no-op and the app behaves identically.
  */
 import React from 'react';
+import { describeToolCall, publishAgentActivity } from './agentActivity';
 import { getModelContext, type WebMcpTool } from './modelContext';
 
 // Small external store so the header chip (and DEV console harness) can see
@@ -60,11 +61,20 @@ export function useWebMcpTools(tools: WebMcpTool[]): { supported: boolean; toolN
     (async () => {
       for (const tool of tools) {
         if (cancelled) return;
+        // Every invocation announces itself on screen first: agent-driven UI
+        // movement must be attributable at a glance.
+        const announced: WebMcpTool = {
+          ...tool,
+          execute: (params, context) => {
+            publishAgentActivity(describeToolCall(tool.name, params ?? {}));
+            return tool.execute(params, context);
+          },
+        };
         try {
           // Registration is what makes the tool visible to the agent; the
           // local map only powers the status chip / DEV harness.
-          if (ctx) await ctx.registerTool(tool, { signal: controller.signal });
-          liveTools.set(tool.name, tool);
+          if (ctx) await ctx.registerTool(announced, { signal: controller.signal });
+          liveTools.set(tool.name, announced);
         } catch (e) {
           console.warn('[webmcp] could not register tool', tool.name, e);
         }

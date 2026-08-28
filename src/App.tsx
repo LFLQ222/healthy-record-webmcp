@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { UploadProvider } from './context/UploadContext';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { AgentActivityIndicator } from './webmcp/AgentActivityIndicator';
 import PatientsListPage from './pages/PatientsListPage';
 import PatientDetailPage from './pages/PatientDetailPage';
 
@@ -36,6 +37,7 @@ export default function App() {
                   </Routes>
                 </BrowserRouter>
               </ErrorBoundary>
+              <AgentActivityIndicator />
             </UploadProvider>
           </NotificationProvider>
         </AuthProvider>

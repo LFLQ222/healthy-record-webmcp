@@ -16,8 +16,11 @@ import {
   createDraftNote,
   getAnalyteHistory,
   getPatientLabResults,
+  normalizeAnalyte,
   type CreateEvolutionNoteInput,
+  type LabResult,
 } from '../services/ehrService';
+import { setAgentHighlights } from './agentHighlights';
 import { buildChartDelta } from './chartSummary';
 import type { WebMcpTool } from './modelContext';
 import { useWebMcpTools } from './useWebMcpTools';
@@ -91,6 +94,49 @@ export function ChartAgentTools({ patientId, patientName, onNavigateSection }: P
             })),
             outOfRangeCount: outOfRange.length,
             note: 'The trend dialog is now open on the physician’s screen.',
+          };
+        },
+      },
+      {
+        name: 'highlight_findings',
+        description:
+          `Visually highlights lab values in the open chart's Laboratory section — the marked analyte cards pulse on the physician's screen for ~15 seconds. With no arguments it highlights every analyte whose LATEST value is out of range; optionally pass specific analyte names (Spanish or English). Purely visual, changes nothing.${forPatient}`,
+        inputSchema: {
+          type: 'object',
+          properties: {
+            analytes: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Optional: specific analytes to highlight, e.g. ["creatinina", "urea"]. Omit to highlight everything currently out of range.',
+            },
+          },
+          additionalProperties: false,
+        },
+        annotations: { readOnlyHint: true },
+        execute: async (params) => {
+          onNavigateSection('labs');
+          const rows = await getPatientLabResults(patientId);
+          // Latest measurement per analyte — the value the grid is showing.
+          const latest = new Map<string, LabResult>();
+          for (const r of [...rows].sort((a, b) => (a.studyDate ?? '').localeCompare(b.studyDate ?? ''))) {
+            latest.set(r.analyteNormalized, r);
+          }
+          let keys: string[];
+          if (Array.isArray(params.analytes) && params.analytes.length) {
+            const wanted = params.analytes.map((a) => normalizeAnalyte(String(a)));
+            keys = [...latest.keys()].filter((k) => wanted.some((w) => k === w || k.includes(w)));
+          } else {
+            keys = [...latest.entries()]
+              .filter(([, r]) => r.status === 'high' || r.status === 'low' || r.status === 'positive')
+              .map(([k]) => k);
+          }
+          await wait(350);
+          setAgentHighlights(keys);
+          const names = keys.map((k) => latest.get(k)?.analyteName ?? k);
+          return {
+            highlighted: names,
+            count: names.length,
+            note: 'The marked analyte cards are pulsing on the physician’s screen for about 15 seconds.',
           };
         },
       },

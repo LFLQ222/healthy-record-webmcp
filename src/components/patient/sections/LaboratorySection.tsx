@@ -91,6 +91,7 @@ import {
 } from '../../common/designTokens';
 import { SectionHeader } from '../../common/SectionHeader';
 import { GroupedList, ListRow } from '../../common/ListRow';
+import { useAgentHighlights } from '../../../webmcp/agentHighlights';
 
 /* ----------------------------- motion tokens ----------------------------- */
 const listStagger = {
@@ -497,6 +498,9 @@ export const LaboratorySection: React.FC<LaboratorySectionProps> = ({
 
   const openAnalyteGraph = (analyteNormalized: string, analyteName: string) =>
     openAnalyteGraphCtx(analyteNormalized, analyteName);
+
+  // Analytes the WebMCP `highlight_findings` tool is currently marking.
+  const agentHighlights = useAgentHighlights();
 
   const handleFileUpload = (files: FileList) => {
     if (!files || files.length === 0) return;
@@ -1607,6 +1611,16 @@ export const LaboratorySection: React.FC<LaboratorySectionProps> = ({
                           cursor: 'pointer',
                           transition: 'all 220ms cubic-bezier(0.4,0,0.2,1)',
                           boxShadow: elevations[1],
+                          // Pulse ring while the agent's highlight_findings tool marks this card.
+                          ...(agentHighlights.has(result.analyteNormalized) && {
+                            outline: '2px solid #F59E0B',
+                            outlineOffset: '2px',
+                            animation: 'hrAgentPulse 1.5s ease-in-out infinite',
+                            '@keyframes hrAgentPulse': {
+                              '0%, 100%': { boxShadow: `${elevations[1]}, 0 0 0 0 rgba(245,158,11,0)` },
+                              '50%': { boxShadow: `${elevations[2]}, 0 0 0 7px rgba(245,158,11,0.22)` },
+                            },
+                          }),
                           '&:hover': {
                             boxShadow: elevations[2],
                             transform: 'translateY(-1px)',

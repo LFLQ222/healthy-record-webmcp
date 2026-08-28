@@ -20,8 +20,11 @@ and the chart moves, step by visible step:
 
 1. `get_chart_summary` returns structured deltas — including which values crossed out of range
 2. `plot_lab_trend` **navigates the UI to the Laboratory section and opens the creatinine trend dialog on screen**, reference band included
-3. `draft_note` writes a SOAP draft anchored to the finding — it lands in the Notes section with a **Sign** button
-4. **The physician reviews and signs.** The agent can never sign; writes are proposals by design.
+3. `highlight_findings` makes every out-of-range analyte card **pulse on the physician's screen**
+4. `draft_note` writes a SOAP draft anchored to the finding — it lands in the Notes section with a **Sign** button
+5. **The physician reviews and signs.** The agent can never sign; writes are proposals by design.
+
+Every tool invocation announces itself with an on-screen "Agent: …" pill first — agent-driven UI movement is always attributable at a glance.
 
 ## Why this use case is a strong fit for WebMCP
 
@@ -78,6 +81,7 @@ The UI chrome is in English (toggle to Spanish in the header); the clinical data
 | `open_patient_chart` | Patient list | read | Opens a chart by id or partial name — swaps the toolset |
 | `get_chart_summary` | Open chart | read | Structured deltas since the previous visit: labs with prior values, range crossings, vitals, med changes, problems, alerts |
 | `plot_lab_trend` | Open chart | read | Navigates to Labs and opens the analyte trend dialog on screen; returns the series (accepts English or Spanish analyte names) |
+| `highlight_findings` | Open chart | read | Pulses out-of-range analyte cards on screen for ~15 s (all of them, or a given list) |
 | `draft_note` | Open chart | **write** | Creates a DRAFT SOAP note the physician must review and **sign in the UI** — the tool cannot sign |
 
 ## Architecture notes
