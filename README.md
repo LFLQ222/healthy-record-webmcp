@@ -4,7 +4,7 @@
 
 Built for the [OpenAI WebMCP Challenge](https://webmcp.devpost.com/) by [Healthy Medical AI](https://www.healthyehr.com), a Mexican health-tech startup. This repository is a public, self-contained slice of our production EHR (Healthy Record) with a fully mocked data layer. **Every patient in this demo is synthetic — no real patient data exists anywhere in this repository or its history.**
 
-License: MIT · Live demo: _URL coming with the deploy_ · Demo video: _coming with the submission_
+License: MIT · **Live demo: [healthy-record-webmcp.netlify.app](https://healthy-record-webmcp.netlify.app)** · Demo video: _coming with the submission_
 
 ---
 
@@ -54,7 +54,7 @@ Judges can evaluate in either browser:
 
 **Google Chrome (149+)**
 1. Enable `chrome://flags/#enable-webmcp-testing` → relaunch
-2. Open the live URL (or `npm install && npm run dev` → http://localhost:5173)
+2. Open **https://healthy-record-webmcp.netlify.app** (or `npm install && npm run dev` → http://localhost:5173)
 3. Optional: install the official [Model Context Tool Inspector](https://chromewebstore.google.com/detail/model-context-tool-inspec/gbpdfapgefenggkahomfgkhfehlcenpd) to watch registrations and talk to the page in natural language
 4. Open **Ernesto Ramírez Ibarra**'s chart — the header chip shows the live toolset ("Agent · 3 tools")
 
