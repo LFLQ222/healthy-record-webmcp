@@ -130,6 +130,8 @@ En React va atado al ciclo de vida del componente del expediente: registrar al m
 |---|---|---|
 | `highlight_findings` | read | Marca valores fuera de rango en la vista. Barato y muy visual — **✅ hecha 28-ago (pulso ámbar 15 s + píldora de actividad del agente)** |
 | `order_lab_panel` | write | Orden de laboratorio con confirmación explícita — descartada: `draft_note` ya demuestra el patrón de escritura con aprobación |
+| `read_notes` | read | **✅ agregada 28-ago**: SOAP completo con `untrustedContentHint` — el agente puede citar qué escribió el médico y cuándo |
+| `plot_vital_trend` | read | **✅ agregada 28-ago**: tendencia de signos vitales vía `openVitalGraph` (la TA 128→142 es la otra mitad de la historia) |
 
 **Dos tools pulidas ganan a seis a medias.** Se juzga criterio, no cantidad. No agregues tools por tener más.
 

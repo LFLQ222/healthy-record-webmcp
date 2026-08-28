@@ -63,6 +63,7 @@ import { HealthSummarySection } from '../components/patient/sections/HealthSumma
 import { AnalyteGraphProvider } from '../components/patient/AnalyteGraphProvider';
 import { LanguageToggle } from '../components/common/LanguageToggle';
 import { ChartAgentTools } from '../webmcp/ChartAgentTools';
+import { AgentPromptHints } from '../webmcp/AgentPromptHints';
 import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
 
 const KNOWN_SECTIONS = ['summary', 'notes', 'vitals', 'labs', 'results'];
@@ -461,6 +462,14 @@ export default function PatientDetailPage() {
               </Stack>
             ) : (
               <Box sx={{ pb: 4 }}>
+                <AgentPromptHints
+                  prompts={[
+                    'What changed since the last visit?',
+                    'Show me the creatinine trend',
+                    'Highlight everything out of range',
+                    'Draft a note about this finding',
+                  ]}
+                />
                 {/* Section switch */}
                 <AnalyteGraphProvider patientId={id as string}>
                   <ChartAgentTools

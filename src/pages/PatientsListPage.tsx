@@ -7,13 +7,16 @@ import {
   Box,
   Chip,
   Container,
+  InputAdornment,
   Paper,
   Skeleton,
   Stack,
+  TextField,
   Typography,
   useTheme,
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import SearchIcon from '@mui/icons-material/Search';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { listMyPatients, type UserBasic } from '../services/ehrService';
@@ -21,6 +24,7 @@ import { BRAND, glassSx } from '../components/common/designTokens';
 import { LanguageToggle } from '../components/common/LanguageToggle';
 import { useAuth } from '../context/AuthContext';
 import { PatientListAgentTools } from '../webmcp/PatientListAgentTools';
+import { AgentPromptHints } from '../webmcp/AgentPromptHints';
 import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
 
 /**
@@ -38,6 +42,14 @@ export default function PatientsListPage() {
     queryKey: ['myPatients'],
     queryFn: listMyPatients,
   });
+
+  const [query, setQuery] = React.useState('');
+  const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const filtered = React.useMemo(() => {
+    const q = norm(query.trim());
+    const all = patients ?? [];
+    return q ? all.filter((p) => norm(`${p.firstName} ${p.lastName}`).includes(q)) : all;
+  }, [patients, query]);
 
   const panelGlass = glassSx(isDark, 'panel', { blur: 20, radius: 14 });
 
@@ -103,11 +115,29 @@ export default function PatientsListPage() {
         <Typography variant="h5" sx={{ fontWeight: 600, letterSpacing: '-0.02em', mb: 0.5 }}>
           {t('nav.patients', { defaultValue: 'Patients' })}
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           {t('list.subtitle', {
             defaultValue: 'Open a chart — the agent tools for that chart register the moment it opens.',
           })}
         </Typography>
+
+        <AgentPromptHints prompts={['List my patients', "Open Ernesto's chart"]} />
+
+        <TextField
+          fullWidth
+          size="small"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search patient…"
+          sx={{ mb: 2.5 }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sx={{ fontSize: 18, color: 'text.disabled' }} />
+              </InputAdornment>
+            ),
+          }}
+        />
 
         {isLoading ? (
           <Stack spacing={1.25}>
@@ -117,7 +147,7 @@ export default function PatientsListPage() {
           </Stack>
         ) : (
           <Stack spacing={1.25}>
-            {(patients ?? []).map((p) => {
+            {filtered.map((p) => {
               const age = p.dateOfBirth ? dayjs().diff(dayjs(p.dateOfBirth as string), 'year') : null;
               return (
                 <Paper

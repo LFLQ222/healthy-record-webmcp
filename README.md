@@ -80,6 +80,8 @@ Suggested prompts, in order:
 | *What changed since the last visit?* | call `get_chart_summary` → structured deltas |
 | *Show me the creatinine trend* | call `plot_lab_trend` → the chart navigates and the trend dialog opens |
 | *Draft a note about this finding* | call `draft_note` → a DRAFT appears in Notes with a **Sign** button |
+| *Show me his blood pressure trend* | call `plot_vital_trend` → the vitals trend dialog opens |
+| *When was kidney function first flagged in the notes?* | call `read_notes` → cites the physician's own April 2025 note |
 
 The UI chrome is in English (toggle to Spanish in the header); the clinical data is deliberately Spanish — messy real-world charting, abbreviations and all, is part of the design.
 
@@ -90,7 +92,9 @@ The UI chrome is in English (toggle to Spanish in the header); the clinical data
 | `list_patients` | Patient list | read | Physician's patients (id, name, age, sex) |
 | `open_patient_chart` | Patient list | read | Opens a chart by id or partial name — swaps the toolset |
 | `get_chart_summary` | Open chart | read | Structured deltas since the previous visit: labs with prior values, range crossings, vitals, med changes, problems, alerts |
+| `read_notes` | Open chart | read | SOAP evolution notes with status and content (`untrustedContentHint`: free-text clinical Spanish) — lets the agent cite what the physician wrote and when |
 | `plot_lab_trend` | Open chart | read | Navigates to Labs and opens the analyte trend dialog on screen; returns the series (accepts English or Spanish analyte names) |
+| `plot_vital_trend` | Open chart | read | Same, for vital signs: weight, BMI, blood pressure, heart rate, temperature, SpO₂ |
 | `highlight_findings` | Open chart | read | Pulses out-of-range analyte cards on screen for ~15 s (all of them, or a given list) |
 | `draft_note` | Open chart | **write** | Creates a DRAFT SOAP note the physician must review and **sign in the UI** — the tool cannot sign |
 

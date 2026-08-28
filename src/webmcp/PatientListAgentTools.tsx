@@ -40,7 +40,7 @@ export function PatientListAgentTools() {
       {
         name: 'open_patient_chart',
         description:
-          'Opens a patient chart on the physician’s screen by patient id or (partial) name. Opening the chart REPLACES these tools with chart-scoped tools (get_chart_summary, plot_lab_trend, draft_note).',
+          'Opens a patient chart on the physician’s screen by patient id or (partial) name. Opening the chart REPLACES these tools with chart-scoped tools (get_chart_summary, read_notes, plot_lab_trend, plot_vital_trend, highlight_findings, draft_note).',
         inputSchema: {
           type: 'object',
           properties: {

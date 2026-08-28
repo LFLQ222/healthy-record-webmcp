@@ -15,11 +15,15 @@ import { useAnalyteGraph } from '../components/patient/AnalyteGraphProvider';
 import {
   createDraftNote,
   getAnalyteHistory,
+  getEvolutionNote,
   getPatientLabResults,
+  listEvolutionNotes,
+  listPatientVitals,
   normalizeAnalyte,
   type CreateEvolutionNoteInput,
   type LabResult,
 } from '../services/ehrService';
+import type { VitalMetricKey } from '../components/patient/vitalMetrics';
 import { setAgentHighlights } from './agentHighlights';
 import { buildChartDelta } from './chartSummary';
 import type { WebMcpTool } from './modelContext';
@@ -33,8 +37,27 @@ interface Props {
 
 const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
+const normalizeText = (s: string) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .trim();
+
+// Friendly names (English and Spanish) → the vital-history metric to plot.
+const VITAL_ALIASES: Array<{ match: string[]; key: VitalMetricKey; label: string; unit?: string }> = [
+  { match: ['weight', 'peso'], key: 'weightKg', label: 'Peso', unit: 'kg' },
+  { match: ['bmi', 'imc', 'masa corporal'], key: 'bmi', label: 'IMC' },
+  { match: ['diastol'], key: 'diastole', label: 'TA diastólica', unit: 'mmHg' },
+  { match: ['blood pressure', 'presion', 'systol', 'sistol', 'ta '], key: 'systole', label: 'TA sistólica', unit: 'mmHg' },
+  { match: ['heart', 'cardiaca', 'pulse', 'pulso', 'fc'], key: 'heartRate', label: 'Frecuencia cardiaca', unit: 'lpm' },
+  { match: ['temp'], key: 'temperatureC', label: 'Temperatura', unit: '°C' },
+  { match: ['oxygen', 'spo2', 'satur', 'sato2'], key: 'oxygenSaturationPct', label: 'SatO₂', unit: '%' },
+  { match: ['respirator', 'respiratoria', 'fr'], key: 'respRate', label: 'Frecuencia respiratoria', unit: 'rpm' },
+];
+
 export function ChartAgentTools({ patientId, patientName, onNavigateSection }: Props) {
-  const { openAnalyteGraph } = useAnalyteGraph();
+  const { openAnalyteGraph, openVitalGraph } = useAnalyteGraph();
   const queryClient = useQueryClient();
 
   const tools = React.useMemo<WebMcpTool[]>(() => {
@@ -49,9 +72,46 @@ export function ChartAgentTools({ patientId, patientName, onNavigateSection }: P
         execute: async () => buildChartDelta(patientId),
       },
       {
+        name: 'read_notes',
+        description:
+          `Reads the clinical evolution notes (SOAP) of the open chart, newest first, including their status (DRAFT/SIGNED/AMENDED) — and navigates the Notes section into view. Use it to know what the physician has written and when (e.g. when a finding was first mentioned). Note bodies are free-text clinical Spanish. Optionally pass a noteId for one note, or a limit.${forPatient}`,
+        inputSchema: {
+          type: 'object',
+          properties: {
+            noteId: { type: 'string', description: 'Read a single note by id' },
+            limit: { type: 'number', description: 'How many recent notes to return (default 6, max 20)' },
+          },
+          additionalProperties: false,
+        },
+        annotations: { readOnlyHint: true, untrustedContentHint: true },
+        execute: async (params) => {
+          onNavigateSection('notes');
+          const pickFields = (n: Awaited<ReturnType<typeof getEvolutionNote>>) => ({
+            id: n.id,
+            title: n.title,
+            status: n.status,
+            date: n.createdAt.slice(0, 10),
+            signedAt: n.signedAt ? n.signedAt.slice(0, 10) : null,
+            subjective: n.subjective,
+            objective: n.objective,
+            assessment: n.assessment,
+            plan: n.plan,
+            diagnoses: n.diagnoses ?? [],
+          });
+          if (typeof params.noteId === 'string' && params.noteId) {
+            return pickFields(await getEvolutionNote(params.noteId));
+          }
+          const list = await listEvolutionNotes(patientId);
+          const limit =
+            typeof params.limit === 'number' && params.limit > 0 ? Math.min(Math.floor(params.limit), 20) : 6;
+          const full = await Promise.all(list.slice(0, limit).map((n) => getEvolutionNote(n.id)));
+          return { totalNotes: list.length, returned: full.length, notes: full.map(pickFields) };
+        },
+      },
+      {
         name: 'plot_lab_trend',
         description:
-          `Plots the historical trend of one lab analyte ON SCREEN in the open patient chart — the physician sees the chart navigate to the Laboratory section and the trend dialog open with the series and its normal-range band. Also returns the series data. Accepts Spanish or English analyte names (e.g. "creatinina", "creatinine", "glucosa", "HbA1c", "urea").${forPatient}`,
+          `Plots the historical trend of one LABORATORY analyte (blood/urine chemistry) ON SCREEN in the open patient chart — the physician sees the chart navigate to the Laboratory section and the trend dialog open with the series and its normal-range band. Also returns the series data. Accepts Spanish or English analyte names (e.g. "creatinina", "creatinine", "glucosa", "HbA1c", "urea"). For VITAL SIGNS (blood pressure, weight, heart rate) use plot_vital_trend instead.${forPatient}`,
         inputSchema: {
           type: 'object',
           properties: {
@@ -94,6 +154,52 @@ export function ChartAgentTools({ patientId, patientName, onNavigateSection }: P
             })),
             outOfRangeCount: outOfRange.length,
             note: 'The trend dialog is now open on the physician’s screen.',
+          };
+        },
+      },
+      {
+        name: 'plot_vital_trend',
+        description:
+          `Plots the historical trend of one VITAL SIGN on screen in the open patient chart — navigates to the Vital signs section and opens the trend dialog. Metrics: weight, BMI, blood pressure (systolic/diastolic), heart rate, temperature, oxygen saturation, respiratory rate (English or Spanish). For LABORATORY analytes (creatinine, glucose, HbA1c…) use plot_lab_trend instead.${forPatient}`,
+        inputSchema: {
+          type: 'object',
+          properties: {
+            metric: {
+              type: 'string',
+              description: 'Vital sign to plot, e.g. "blood pressure", "weight", "peso", "heart rate", "SpO2"',
+            },
+          },
+          required: ['metric'],
+          additionalProperties: false,
+        },
+        annotations: { readOnlyHint: true },
+        execute: async (params) => {
+          const q = normalizeText(String(params.metric ?? ''));
+          const alias = VITAL_ALIASES.find((a) => a.match.some((m) => q.includes(m) || m.includes(q)));
+          if (!q || !alias) {
+            return {
+              plotted: false,
+              error: `Unknown vital sign "${params.metric}".`,
+              availableMetrics: VITAL_ALIASES.map((a) => a.label),
+            };
+          }
+          onNavigateSection('vitals');
+          await wait(350);
+          await openVitalGraph(alias.key, alias.label, alias.unit);
+          const vitals = await listPatientVitals(patientId, {});
+          const points = vitals
+            .map((v) => ({
+              date: ((v.recordedAt ?? v.createdAt) as string).slice(0, 10),
+              value: (v as unknown as Record<string, number | null>)[alias.key],
+            }))
+            .filter((p) => p.value != null)
+            .reverse();
+          return {
+            plotted: true,
+            metric: alias.label,
+            unit: alias.unit,
+            points,
+            note: 'The vital-sign trend dialog is now open on the physician’s screen.',
           };
         },
       },
@@ -182,7 +288,7 @@ export function ChartAgentTools({ patientId, patientName, onNavigateSection }: P
         },
       },
     ];
-  }, [patientId, patientName, onNavigateSection, openAnalyteGraph, queryClient]);
+  }, [patientId, patientName, onNavigateSection, openAnalyteGraph, openVitalGraph, queryClient]);
 
   useWebMcpTools(tools);
   return null;

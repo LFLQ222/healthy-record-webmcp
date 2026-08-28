@@ -47,8 +47,12 @@ export function describeToolCall(toolName: string, params: Record<string, unknow
       return `Agent: opening ${typeof params.patient === 'string' ? `the chart for "${params.patient}"` : 'a patient chart'}…`;
     case 'get_chart_summary':
       return 'Agent: reviewing what changed since the last visit…';
+    case 'read_notes':
+      return 'Agent: reading the clinical notes…';
     case 'plot_lab_trend':
       return `Agent: plotting the ${typeof params.analyte === 'string' ? params.analyte : 'lab'} trend…`;
+    case 'plot_vital_trend':
+      return `Agent: plotting the ${typeof params.metric === 'string' ? params.metric : 'vital-sign'} trend…`;
     case 'highlight_findings':
       return 'Agent: highlighting out-of-range values…';
     case 'draft_note':
