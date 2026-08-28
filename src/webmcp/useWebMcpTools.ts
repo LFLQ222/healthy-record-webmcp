@@ -67,6 +67,9 @@ export function useWebMcpTools(tools: WebMcpTool[]): { supported: boolean; toolN
           ...tool,
           execute: (params, context) => {
             publishAgentActivity(describeToolCall(tool.name, params ?? {}));
+            // The guided tour listens for this to check steps off as the
+            // agent actually performs them.
+            window.dispatchEvent(new CustomEvent('hr-demo:tool-invoked', { detail: { name: tool.name } }));
             return tool.execute(params, context);
           },
         };

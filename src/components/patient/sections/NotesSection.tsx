@@ -581,6 +581,7 @@ export default function NotesSection({ patientId }: NotesSectionProps) {
                                 await signDraftNote(note.id);
                                 notify({ message: t('toast.draftSigned'), severity: 'success' });
                                 queryClient.invalidateQueries({ queryKey: ['evolutionNotes', patientId] });
+                                window.dispatchEvent(new CustomEvent('hr-demo:draft-signed'));
                               } catch {
                                 notify({ message: t('toast.signError'), severity: 'error' });
                               }

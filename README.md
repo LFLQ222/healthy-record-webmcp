@@ -65,6 +65,8 @@ The physician brings clinical judgment and legal responsibility; the agent bring
 
 Judges can evaluate in either browser:
 
+On first visit the app asks: **guided tour or free exploration**. The tour is a floating checklist that checks itself off as things actually happen — it detects your navigation, each WebMCP tool your agent invokes, and your Sign click. No medical background needed.
+
 **Google Chrome (149+)**
 1. Enable `chrome://flags/#enable-webmcp-testing` → relaunch
 2. Open **https://healthy-record-webmcp.netlify.app** (or `npm install && npm run dev` → http://localhost:5173)

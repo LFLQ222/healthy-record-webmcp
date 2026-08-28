@@ -8,6 +8,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import { UploadProvider } from './context/UploadContext';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { AgentActivityIndicator } from './webmcp/AgentActivityIndicator';
+import { DemoTourPanel, TourEntryDialog } from './tour/DemoTour';
 import PatientsListPage from './pages/PatientsListPage';
 import PatientDetailPage from './pages/PatientDetailPage';
 
@@ -35,6 +36,8 @@ export default function App() {
                     <Route path="/pacientes/:id" element={<PatientDetailPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
+                  <TourEntryDialog />
+                  <DemoTourPanel />
                 </BrowserRouter>
               </ErrorBoundary>
               <AgentActivityIndicator />
