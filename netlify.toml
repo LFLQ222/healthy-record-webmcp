@@ -1,0 +1,22 @@
+# Netlify deploy config for the WebMCP demo.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback: deep links like /pacientes/pat-001 must serve the app shell.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # WebMCP requires origin-isolated documents. Modern Chrome origin-keys by
+    # default, but opting in explicitly removes any doubt on judges' browsers.
+    Origin-Agent-Cluster = "?1"
+    X-Content-Type-Options = "nosniff"

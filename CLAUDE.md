@@ -193,6 +193,8 @@ Cada paso tiene que **verse ocurrir**. Estados de carga deliberados, no instant�
 
 La prueba que importa no es que la tool corra. Es que **el agente escoja la tool correcta** desde lenguaje natural. Si no la escoge, el problema está en el `description` o en el `inputSchema`, no en el código.
 
+**✅ Validado con agente real el 28-ago-2026** (Gemini vía Model Context Tool Inspector oficial, Chrome 151 + flag): "What changed since the last visit?" → `get_chart_summary` · "Show me the creatinine trend" → `plot_lab_trend` (la pantalla navegó y abrió la gráfica sola) · "Draft a note about this finding" → `draft_note` (borrador en Notas → botón Sign). Las tres a la primera, sin ajustar descriptions.
+
 Alternativa: navegador interno de la app de escritorio de ChatGPT, con GPT-5.6 Sol o Terra (Luna trae WebMCP apagado). Los jueces pueden usar cualquiera de las dos, así que si se puede, probar en ambas.
 
 ---
@@ -221,7 +223,7 @@ Cierre **3-sep-2026 1:00 PM PT** (confirmado — la sección 1 tenía razón). J
 
 - [ ] **URL viva** accesible desde el navegador de ChatGPT o Chrome con WebMCP habilitado
 - [ ] **Video < 3 minutos**, público en YouTube, demo claro **con audio**
-- [ ] **Repo público** con licencia open source "detectable y visible al tope de la página del repo" (MIT ✓ — verificar que GitHub la muestre en About)
+- [x] **Repo público** con licencia open source "detectable y visible al tope de la página del repo" — publicado en github.com/LFLQ222/healthy-record-webmcp el 28-ago; GitHub detecta "MIT License" ✓. Falta: llenar About + topics en la UI
 - [ ] **Descripción escrita** que responda exactamente: (1) por qué el caso de uso es fuerte para WebMCP, (2) cómo crea mejor UX, (3) qué pueden hacer personas y agentes **juntos**
 
 Criterios, peso igual: **WebMCP Leverage · Execution · Potential Impact · Creativity & Ambition**. Jueces: Andrew Galloni (Cloudflare), **Alex Nahas (creador de MCP-B)**, Ilya Grigorik (Shopify), Jude Gao (Vercel/Next.js), Justin Rushing (OpenAI, Browser Platform), **Sarah Drasner (Chrome)**, Sean Roberts (Netlify). Todos de plataforma web/infra — **cero perfil salud**: el video y la descripción no pueden asumir contexto clínico.
