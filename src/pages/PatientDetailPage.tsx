@@ -65,6 +65,8 @@ import { LanguageToggle } from '../components/common/LanguageToggle';
 import { ChartAgentTools } from '../webmcp/ChartAgentTools';
 import { AgentPromptHints } from '../webmcp/AgentPromptHints';
 import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
+import { DemoWelcome, WELCOME_STORAGE_KEY, welcomeInitiallyOpen } from '../components/common/DemoWelcome';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 const KNOWN_SECTIONS = ['summary', 'notes', 'vitals', 'labs', 'results'];
 
@@ -124,6 +126,17 @@ export default function PatientDetailPage() {
   // Document deletion state (shared by labs and results sections)
   const [confirmDeleteDocId, setConfirmDeleteDocId] = React.useState<string | null>(null);
   const [confirmDeleteDocName, setConfirmDeleteDocName] = React.useState<string>('');
+
+  // First-visit orientation for evaluators without a medical background.
+  const [welcomeOpen, setWelcomeOpen] = React.useState(welcomeInitiallyOpen);
+  const dismissWelcome = React.useCallback(() => {
+    setWelcomeOpen(false);
+    try {
+      sessionStorage.setItem(WELCOME_STORAGE_KEY, '1');
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   type NavItem = { id: string; label: string; icon: React.ReactNode };
   type NavGroup = { label: string | null; items: NavItem[] };
@@ -373,6 +386,15 @@ export default function PatientDetailPage() {
 
           <Stack direction="row" spacing={1} alignItems="center">
             <WebMcpStatusChip />
+            <IconButton
+              size="small"
+              onClick={() => setWelcomeOpen(true)}
+              aria-label="About this demo"
+              title="About this demo"
+              sx={{ width: 30, height: 30, color: 'text.secondary' }}
+            >
+              <HelpOutlineIcon sx={{ fontSize: 18 }} />
+            </IconButton>
             <LanguageToggle />
             {!isMobile && (
               <Button
@@ -462,8 +484,10 @@ export default function PatientDetailPage() {
               </Stack>
             ) : (
               <Box sx={{ pb: 4 }}>
+                <DemoWelcome open={welcomeOpen} onDismiss={dismissWelcome} />
                 <AgentPromptHints
                   prompts={[
+                    'Explain this patient in plain language',
                     'What changed since the last visit?',
                     'Show me the creatinine trend',
                     'Highlight everything out of range',

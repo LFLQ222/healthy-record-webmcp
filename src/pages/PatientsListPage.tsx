@@ -174,9 +174,26 @@ export default function PatientsListPage() {
                     {p.lastName[0]}
                   </Avatar>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Typography variant="body1" sx={{ fontWeight: 500, letterSpacing: '-0.01em' }} noWrap>
-                      {p.firstName} {p.lastName}
-                    </Typography>
+                    <Stack direction="row" spacing={1} alignItems="center" sx={{ minWidth: 0 }}>
+                      <Typography variant="body1" sx={{ fontWeight: 500, letterSpacing: '-0.01em' }} noWrap>
+                        {p.firstName} {p.lastName}
+                      </Typography>
+                      {p.id === 'pat-001' && (
+                        <Chip
+                          size="small"
+                          label="Start here"
+                          sx={{
+                            height: 20,
+                            fontSize: '0.66rem',
+                            fontWeight: 700,
+                            flexShrink: 0,
+                            bgcolor: alpha('#F59E0B', isDark ? 0.25 : 0.16),
+                            color: isDark ? '#FCD34D' : '#B45309',
+                            '& .MuiChip-label': { px: 0.9 },
+                          }}
+                        />
+                      )}
+                    </Stack>
                     <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block' }}>
                       {age != null ? `${age} ${t('sidebar.years', { defaultValue: 'yrs' })}` : '—'}
                       {p.gender ? ` · ${p.gender === 'male' ? 'M' : 'F'}` : ''}

@@ -77,6 +77,7 @@ Suggested prompts, in order:
 
 | You say | The agent should |
 |---|---|
+| *Explain this patient in plain language* | read the chart for you — no medical background needed |
 | *What changed since the last visit?* | call `get_chart_summary` → structured deltas |
 | *Show me the creatinine trend* | call `plot_lab_trend` → the chart navigates and the trend dialog opens |
 | *Draft a note about this finding* | call `draft_note` → a DRAFT appears in Notes with a **Sign** button |
