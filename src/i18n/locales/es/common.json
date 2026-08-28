@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "features": "Funciones",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "register": "Registrarse",
+    "login": "Ingresar",
+    "loginLong": "Iniciar sesión",
+    "dashboard": "Panel",
+    "imagingStudies": "Estudios de Imagen",
+    "calendar": "Calendario",
+    "patients": "Pacientes",
+    "clinics": "Clínicas",
+    "users": "Usuarios",
+    "modules": "Módulos",
+    "errors": "Errores",
+    "agenda": "Agenda",
+    "marketing": "Marketing"
+  },
+  "role": {
+    "admin": "Admin",
+    "clinic": "Clínica",
+    "doctor": "Doctor",
+    "patient": "Paciente",
+    "nurse": "Enfermera",
+    "receptionist": "Recepcionista"
+  },
+  "navbar": {
+    "configureSignature": "Configurar firma",
+    "professionalData": "Mis datos profesionales",
+    "payments": "Pagos",
+    "switchAccount": "Cambiar cuenta",
+    "logout": "Cerrar sesión",
+    "savedAccounts": "Cuentas guardadas",
+    "addAccount": "Agregar cuenta",
+    "signaturePasswordPrompt": "Nueva contraseña de firma electrónica (mín. 8 caracteres con mayúsculas, minúsculas y números)",
+    "signaturePasswordUpdated": "Contraseña de firma actualizada.",
+    "signaturePasswordError": "No se pudo actualizar la contraseña de firma."
+  },
+  "language": {
+    "label": "Idioma",
+    "change": "Cambiar idioma"
+  },
+  "theme": {
+    "toggle": "Cambiar tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "row": "Tema: {{mode}}"
+  },
+  "legal": {
+    "back": "Volver",
+    "spanishOnlyNotice": "Esta es la versión oficial en español de este documento legal, la única con validez jurídica."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "errorLoadingHistory": "Error al cargar historial",
+  "history": "Historial",
+  "close": "Cerrar",
+  "notEnoughData": "No hay suficientes datos históricos para graficar este analito.",
+  "notEnoughDataVital": "No hay suficientes tomas registradas para graficar este signo vital.",
+  "needTwoMeasurements": "Se necesitan al menos 2 mediciones en fechas diferentes."
+}

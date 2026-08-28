@@ -1,0 +1,104 @@
+{
+  "header": {
+    "title": "Medical record",
+    "loading": "Loading...",
+    "activeConsultation": "Active consultation",
+    "customize": "Customize",
+    "customizeRecord": "Customize record",
+    "export": "Export",
+    "exportRecord": "Export medical record",
+    "createAccess": "Create access",
+    "createAccessForPatient": "Create patient access",
+    "close": "Close"
+  },
+  "group": {
+    "patient": "Patient",
+    "clinical": "Clinical",
+    "studies": "Studies",
+    "history": "History",
+    "specialties": "Specialties",
+    "administrative": "Administrative"
+  },
+  "nav": {
+    "personalInfo": "Personal information",
+    "vitals": "Vital signs",
+    "medications": "Medications",
+    "summary": "Summary",
+    "dental": "Dentistry",
+    "diagnoses": "Diagnoses",
+    "symptoms": "Symptoms",
+    "allergies": "Allergies",
+    "notes": "Notes",
+    "prescriptions": "Prescriptions",
+    "labs": "Laboratory",
+    "results": "Results",
+    "radiology": "Radiology",
+    "paraclinicos": "Paraclinical",
+    "thermography": "Thermography",
+    "detox": "Detox",
+    "inbody": "InBody",
+    "sht": "SHT Therapy",
+    "bioresonancia": "Bioresonance",
+    "history": "Medical history",
+    "andrology": "Andrology",
+    "obgyn": "OB-GYN",
+    "perinatal": "Perinatal",
+    "postnatal": "Postnatal",
+    "psychiatry": "Psychiatry",
+    "diet": "Nutrition",
+    "vaccines": "Vaccines",
+    "orders": "Orders",
+    "formatos": "Forms",
+    "visits": "Past visits"
+  },
+  "sidebar": {
+    "patientFallback": "Patient",
+    "ageYears": "{{count}} years",
+    "ageUnknown": "Age not registered"
+  },
+  "toast": {
+    "invalidFormat": "Invalid format. Use JPEG, PNG, WebP or GIF",
+    "imageTooLarge": "Image is too large. Maximum 5MB",
+    "profilePhotoUpdated": "Profile photo updated",
+    "uploadImageError": "Error uploading image",
+    "healthSummaryUpdated": "Health summary updated",
+    "regenerateSummaryError": "Could not regenerate the summary",
+    "studyUploaded": "Study uploaded to record",
+    "studyUploadError": "Could not upload the study",
+    "createAppointmentError": "Could not create the appointment",
+    "deleteDocumentError": "Could not delete the document."
+  },
+  "state": {
+    "unauthorized": "Only available for authorized staff.",
+    "restrictedTitle": "The patient restricted their record",
+    "restrictedBody": "You no longer have access to this record because the patient paused your permission. To view it again, the patient must reactivate you from the «Authorized doctors» section of their profile. It cannot be reactivated from here.",
+    "loadError": "Could not load patient details.",
+    "noVisits": "No past visits registered.",
+    "moduleCheckFailedTitle": "Could not verify the module",
+    "moduleCheckFailedBody": "We could not confirm with the server whether your clinic has this module enabled. The studies are still saved; please try again."
+  },
+  "linkDialog": {
+    "title": "Link patient to view record",
+    "bodyBefore": "To access the record of",
+    "thisPatient": "this patient",
+    "bodyAfter": ", you must first have a scheduled appointment. Create an initial appointment to establish the link.",
+    "dateLabel": "Appointment date and time",
+    "hint": "Allowed business hours: 08:00 to 18:00. The appointment must be in the future and must not conflict with others.",
+    "create": "Create appointment"
+  },
+  "deleteDialog": {
+    "title": "Delete document",
+    "bodyBefore": "Are you sure you want to delete ",
+    "bodyAfter": "? This action cannot be undone."
+  },
+  "imagePreview": {
+    "alt": "Profile photo",
+    "changePhoto": "Change photo"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "back": "Back",
+    "delete": "Delete",
+    "retry": "Retry"
+  }
+}

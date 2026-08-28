@@ -1,0 +1,102 @@
+{
+  "status": {
+    "high": "High",
+    "low": "Low",
+    "abnormal": "Abnormal",
+    "positive": "Positive",
+    "negative": "Negative",
+    "notAvailable": "N/A",
+    "normal": "Normal"
+  },
+  "graph": {
+    "normal": "Normal",
+    "high": "High",
+    "low": "Low",
+    "normalRange": "Normal range",
+    "min": "Min: {{value}} {{unit}}",
+    "max": "Max: {{value}} {{unit}}",
+    "dateLabel": "Date: {{label}}",
+    "measurements": "{{count}} measurements"
+  },
+  "header": {
+    "title": "Laboratory studies",
+    "analytesExtracted": "{{count}} analytes extracted",
+    "subtitleDefault": "Document and results management"
+  },
+  "filter": {
+    "study": "Study",
+    "allStudies": "All studies"
+  },
+  "upload": {
+    "dropHere": "Drop here to upload",
+    "dropHint": "Lab PDFs or images",
+    "processing": "Processing…",
+    "uploadResults": "Upload results",
+    "uploadAria": "Upload laboratory studies",
+    "emptyTitle": "Upload the laboratory studies",
+    "emptyDescription": "Drag or click to upload PDFs or images of clinical tests. Healthy AI will automatically extract the results and reference values.",
+    "selectFiles": "Select files",
+    "supportedFormats": "Supported formats: PDF, JPG, PNG, WEBP",
+    "confirmTitle": "Confirm upload",
+    "nFiles": "{{count}} files",
+    "oneFile": "1 file",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "uploading": "Uploading…",
+    "previewTitle": "Preview"
+  },
+  "ocr": {
+    "analyzing": "Analyzing document with Healthy AI…",
+    "found": "{{count}} analytes found — searching for more…",
+    "processingPages": "Processing pages. This may take a few moments…"
+  },
+  "notify": {
+    "uploaded": "Documents uploaded. Analyzing with Healthy AI…",
+    "uploadError": "Error uploading documents",
+    "openError": "The document could not be opened",
+    "noAnalytes": "No analytes were found in this document",
+    "reprocessed": "Reprocessed with Healthy AI: {{count}} analytes extracted",
+    "reprocessError": "Error reprocessing the document"
+  },
+  "doc": {
+    "defaultViewerTitle": "Document",
+    "defaultName": "Laboratory document",
+    "fallbackName": "document",
+    "unknownDate": "Unknown date",
+    "analytes": "{{count}} analytes",
+    "abnormal": "{{count}} abnormal",
+    "pages": "{{count}} pages",
+    "viewOriginal": "View original",
+    "viewOriginalAria": "View original document",
+    "reprocess": "Reprocess with Healthy AI",
+    "reprocessAria": "Reprocess with AI",
+    "delete": "Delete",
+    "deleteAria": "Delete document",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "page": "Page {{page}}",
+    "results": "Results",
+    "noRefRange": "No reference range"
+  },
+  "analytes": {
+    "title": "Extracted analytes",
+    "all": "All",
+    "abnormal": "Abnormal ({{count}})",
+    "searchPlaceholder": "Search analyte or study… (e.g. glucose, complete blood count)",
+    "clearSearchAria": "Clear search",
+    "ref": "Ref: {{low}} — {{high}}",
+    "pageShort": "Pg. {{page}}",
+    "measurements": "{{count}} measurements",
+    "noResultsFor": "No results for “{{term}}”",
+    "noAnalytes": "No analytes to show",
+    "clearSearch": "Clear search",
+    "prev": "← Previous",
+    "next": "Next →",
+    "pagination": "Page {{page}} of {{total}} · {{count}} results"
+  },
+  "viewer": {
+    "openNewTab": "Open in new tab",
+    "close": "Close",
+    "loadError": "The document could not be loaded"
+  }
+}

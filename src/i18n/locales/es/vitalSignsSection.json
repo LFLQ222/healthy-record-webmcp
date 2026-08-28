@@ -1,0 +1,107 @@
+{
+  "status": {
+    "normal": "Normal",
+    "warning": "Precaución",
+    "critical": "Crítico"
+  },
+  "header": {
+    "title": "Signos vitales",
+    "subtitle": "Monitoreo y mediciones recientes"
+  },
+  "actions": {
+    "cancel": "Cancelar",
+    "register": "Registrar",
+    "save": "Guardar registros",
+    "saving": "Guardando…",
+    "confirm": "Confirmar",
+    "review": "Revisar",
+    "close": "Cerrar",
+    "delete": "Eliminar",
+    "deleting": "Eliminando…"
+  },
+  "metrics": {
+    "height": "Altura",
+    "weight": "Peso",
+    "bmi": "IMC",
+    "temperature": "Temperatura",
+    "respRate": "Freq. respiratoria",
+    "systole": "TA sistólica",
+    "diastole": "TA diastólica",
+    "heartRate": "Freq. cardiaca",
+    "oxygenSaturation": "Saturación O₂",
+    "bodyFat": "Grasa corporal",
+    "leanMass": "Masa magra",
+    "headCircumference": "Perímetro cefálico"
+  },
+  "graph": {
+    "openAria": "Ver evolución de {{metric}} a lo largo de las tomas"
+  },
+  "history": {
+    "title": "Historial cronológico",
+    "empty": {
+      "title": "Sin registros previos",
+      "description": "Registra los primeros signos vitales para iniciar el historial cronológico."
+    },
+    "columns": {
+      "date": "Fecha",
+      "height": "Altura",
+      "weight": "Peso",
+      "bmi": "IMC",
+      "temp": "Temp",
+      "respRate": "FR",
+      "bloodPressure": "TA",
+      "heartRate": "FC",
+      "oxygen": "SpO₂",
+      "recordedBy": "Registró"
+    },
+    "viewDetail": "Ver detalle",
+    "deleteRecord": "Eliminar registro"
+  },
+  "edit": {
+    "title": "Registrar nuevos signos vitales",
+    "description": "Ingresa los valores y la fecha en que se tomaron. Si no la cambias, se asume hoy. El IMC se calcula automáticamente.",
+    "dateLabel": "Fecha de la toma",
+    "fieldDate": "Fecha",
+    "fieldTime": "Hora",
+    "anthropometry": "Antropometría",
+    "fieldHeight": "Altura",
+    "fieldWeight": "Peso",
+    "fieldBmi": "IMC calculado",
+    "vitalConstants": "Constantes vitales",
+    "fieldSystolic": "Sistólica",
+    "fieldDiastolic": "Diastólica",
+    "fieldHeartRate": "Frecuencia cardiaca",
+    "fieldTemperature": "Temperatura",
+    "otherIndicators": "Otros indicadores",
+    "fieldOxygen": "Saturación O₂",
+    "fieldRespRate": "Frecuencia respiratoria",
+    "fieldBodyFat": "Grasa corporal"
+  },
+  "notify": {
+    "invalidDate": "La fecha de la toma no es válida",
+    "futureDate": "La fecha de la toma no puede ser futura",
+    "saveSuccess": "Signos vitales registrados correctamente",
+    "saveError": "No se pudieron guardar los signos vitales",
+    "deleteSuccess": "Registro eliminado",
+    "deleteError": "No se pudo eliminar el registro"
+  },
+  "confirmSave": {
+    "title": "Confirmar guardado",
+    "subtitle": "Se creará un nuevo registro histórico",
+    "body": "¿Estás seguro de que los valores ingresados son correctos?",
+    "recordedDateLabel": "Fecha de la toma:",
+    "now": "ahora"
+  },
+  "confirmDelete": {
+    "title": "Eliminar registro",
+    "subtitle": "Esta acción no se puede deshacer",
+    "body": "¿Seguro que deseas eliminar este registro histórico del expediente?"
+  },
+  "audit": {
+    "title": "Detalle del registro",
+    "subtitle": "Auditoría clínica",
+    "recordedDate": "Fecha de la toma",
+    "capturedDate": "Fecha de captura en el sistema",
+    "recordedBy": "Registrado por"
+  }
+}

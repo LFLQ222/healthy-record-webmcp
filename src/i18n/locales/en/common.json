@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "register": "Sign up",
+    "login": "Log in",
+    "loginLong": "Log in",
+    "dashboard": "Dashboard",
+    "imagingStudies": "Imaging Studies",
+    "calendar": "Calendar",
+    "patients": "Patients",
+    "clinics": "Clinics",
+    "users": "Users",
+    "modules": "Modules",
+    "errors": "Errors",
+    "agenda": "Schedule",
+    "marketing": "Marketing"
+  },
+  "role": {
+    "admin": "Admin",
+    "clinic": "Clinic",
+    "doctor": "Doctor",
+    "patient": "Patient",
+    "nurse": "Nurse",
+    "receptionist": "Receptionist"
+  },
+  "navbar": {
+    "configureSignature": "Set up signature",
+    "professionalData": "My professional details",
+    "payments": "Payments",
+    "switchAccount": "Switch account",
+    "logout": "Log out",
+    "savedAccounts": "Saved accounts",
+    "addAccount": "Add account",
+    "signaturePasswordPrompt": "New electronic signature password (min. 8 characters with uppercase, lowercase and numbers)",
+    "signaturePasswordUpdated": "Signature password updated.",
+    "signaturePasswordError": "The signature password could not be updated."
+  },
+  "language": {
+    "label": "Language",
+    "change": "Change language"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "row": "Theme: {{mode}}"
+  },
+  "legal": {
+    "back": "Back",
+    "spanishOnlyNotice": "This is the official Spanish-language version of this legal document, and the only legally binding one. A translation is not yet available."
+  }
+}

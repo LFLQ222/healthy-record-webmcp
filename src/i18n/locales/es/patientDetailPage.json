@@ -1,0 +1,104 @@
+{
+  "header": {
+    "title": "Expediente clínico",
+    "loading": "Cargando...",
+    "activeConsultation": "Consulta activa",
+    "customize": "Personalizar",
+    "customizeRecord": "Personalizar expediente",
+    "export": "Exportar",
+    "exportRecord": "Exportar historia clínica",
+    "createAccess": "Crear acceso",
+    "createAccessForPatient": "Crear acceso para paciente",
+    "close": "Cerrar"
+  },
+  "group": {
+    "patient": "Paciente",
+    "clinical": "Clínico",
+    "studies": "Estudios",
+    "history": "Historia",
+    "specialties": "Especialidades",
+    "administrative": "Administrativo"
+  },
+  "nav": {
+    "personalInfo": "Información personal",
+    "vitals": "Signos vitales",
+    "medications": "Medicamentos",
+    "summary": "Resumen",
+    "dental": "Odontología",
+    "diagnoses": "Diagnósticos",
+    "symptoms": "Síntomas",
+    "allergies": "Alergias",
+    "notes": "Notas",
+    "prescriptions": "Recetas",
+    "labs": "Laboratorio",
+    "results": "Resultados",
+    "radiology": "Radiología",
+    "paraclinicos": "Paraclínicos",
+    "thermography": "Termografía",
+    "detox": "Detox",
+    "inbody": "InBody",
+    "sht": "Terapia SHT",
+    "bioresonancia": "Bioresonancia",
+    "history": "Antecedentes",
+    "andrology": "Andrología",
+    "obgyn": "Gineco-Obstétricos",
+    "perinatal": "Perinatal",
+    "postnatal": "Postnatal",
+    "psychiatry": "Psiquiatría",
+    "diet": "Nutrición",
+    "vaccines": "Vacunas",
+    "orders": "Órdenes",
+    "formatos": "Formatos",
+    "visits": "Visitas previas"
+  },
+  "sidebar": {
+    "patientFallback": "Paciente",
+    "ageYears": "{{count}} años",
+    "ageUnknown": "Edad no registrada"
+  },
+  "toast": {
+    "invalidFormat": "Formato no válido. Usa JPEG, PNG, WebP o GIF",
+    "imageTooLarge": "La imagen es muy grande. Máximo 5MB",
+    "profilePhotoUpdated": "Foto de perfil actualizada",
+    "uploadImageError": "Error al subir imagen",
+    "healthSummaryUpdated": "Resumen de salud actualizado",
+    "regenerateSummaryError": "No se pudo regenerar el resumen",
+    "studyUploaded": "Estudio subido al expediente",
+    "studyUploadError": "No se pudo subir el estudio",
+    "createAppointmentError": "No se pudo crear la cita",
+    "deleteDocumentError": "No se pudo eliminar el documento."
+  },
+  "state": {
+    "unauthorized": "Solo disponible para personal autorizado.",
+    "restrictedTitle": "El paciente restringió su expediente",
+    "restrictedBody": "Ya no tienes acceso a este expediente porque el paciente pausó tu permiso. Para volver a verlo, el paciente debe reactivarte desde la sección «Doctores autorizados» de su perfil. No es posible reactivarlo desde aquí.",
+    "loadError": "No se pudo cargar el detalle del paciente.",
+    "noVisits": "Sin visitas previas registradas.",
+    "moduleCheckFailedTitle": "No se pudo verificar el módulo",
+    "moduleCheckFailedBody": "No pudimos confirmar con el servidor si tu clínica tiene este módulo activo. Los estudios siguen guardados; vuelve a intentarlo."
+  },
+  "linkDialog": {
+    "title": "Vincular paciente para ver expediente",
+    "bodyBefore": "Para acceder al expediente de",
+    "thisPatient": "este paciente",
+    "bodyAfter": ", primero debes tener una cita programada. Crea una cita inicial para establecer el vínculo.",
+    "dateLabel": "Fecha y hora de la cita",
+    "hint": "Horario laboral permitido: 08:00 a 18:00. La cita debe ser en el futuro y sin conflicto con otras.",
+    "create": "Crear cita"
+  },
+  "deleteDialog": {
+    "title": "Eliminar documento",
+    "bodyBefore": "¿Seguro que quieres eliminar ",
+    "bodyAfter": "? Esta acción no se puede deshacer."
+  },
+  "imagePreview": {
+    "alt": "Foto de perfil",
+    "changePhoto": "Cambiar foto"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "back": "Volver",
+    "delete": "Eliminar",
+    "retry": "Reintentar"
+  }
+}

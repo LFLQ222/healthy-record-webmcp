@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "title": "Resumen de salud",
+    "subtitle": "Visión general generada con Healthy AI",
+    "disclaimer": "Información generada por inteligencia artificial. No constituye diagnóstico médico ni sustituye la valoración del profesional sanitario."
+  },
+  "action": {
+    "updating": "Actualizando",
+    "update": "Actualizar"
+  },
+  "vitals": {
+    "weight": "Peso",
+    "bmi": "IMC",
+    "pressure": "Presión",
+    "heartRate": "FC",
+    "oxygen": "SatO₂",
+    "empty": "Sin signos vitales recientes",
+    "recordedOn": "Toma del {{date}}"
+  },
+  "clinical": {
+    "title": "Análisis clínico",
+    "emptySummary": "Sin resumen disponible."
+  },
+  "metrics": {
+    "hallazgos": "Hallazgos",
+    "medicamentos": "Meds",
+    "resultados": "Resultados"
+  },
+  "diagnoses": {
+    "title": "Diagnósticos activos",
+    "empty": "Sin diagnósticos activos."
+  },
+  "medications": {
+    "title": "Medicamentos",
+    "noDose": "Sin dosis",
+    "empty": "Sin medicamentos activos."
+  },
+  "findings": {
+    "title": "Hallazgos relevantes",
+    "refTitle": "Referencia: {{range}}",
+    "refShort": "Ref {{range}}",
+    "unparsed": "Sin interpretar",
+    "outOfRange": "Fuera de rango",
+    "inRange": "En rango",
+    "needsReview": "{{count}} requieren revisión",
+    "noneOutOfRange": "Nada fuera de rango",
+    "needsReview_one": "{{count}} requiere revisión"
+  },
+  "allergies": {
+    "title": "Alergias",
+    "other": "Otra",
+    "empty": "Sin alergias."
+  },
+  "vaccines": {
+    "title": "Vacunas",
+    "empty": "Sin vacunas."
+  },
+  "overlay": {
+    "updating": "Actualizando…"
+  },
+  "status": {
+    "critical": "Crítico",
+    "high": "Alto",
+    "low": "Bajo",
+    "positive": "Positivo",
+    "negative": "Negativo",
+    "normal": "Normal"
+  },
+  "trafficLight": {
+    "verde": {
+      "label": "Estable",
+      "description": "Signos dentro de rangos esperados"
+    },
+    "amarillo": {
+      "label": "Atención",
+      "description": "Requiere seguimiento clínico"
+    },
+    "rojo": {
+      "label": "Crítico",
+      "description": "Intervención prioritaria"
+    }
+  },
+  "common": {
+    "andMore": "+{{count}} más"
+  },
+  "problems": {
+    "title": "Problemas y tratamiento"
+  },
+  "context": {
+    "title": "Contexto"
+  }
+}

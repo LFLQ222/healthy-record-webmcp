@@ -1,0 +1,25 @@
+/**
+ * Reset mínimo. El color, la tipografía y las superficies las define el tema de
+ * MUI (src/theme.ts) — aquí no va nada de eso.
+ *
+ * Este archivo era todavía la plantilla de arranque de Vite: ponía
+ * `background-color: #242424` en `:root`, la tipografía Avenir, enlaces en
+ * #646cff y un `button { background:#1a1a1a }` global peleando con MUI.
+ *
+ * OJO con poner `background-color` en `:root`: si html tiene fondo propio, el de
+ * body DEJA de propagarse al lienzo, y todo lo que quede por debajo del alto del
+ * body muestra el color de html. Mientras existió el degradado ambiental (fijo y
+ * a pantalla completa) eso quedaba tapado; al quitarlo, cada pantalla aparecía
+ * blanca arriba y #242424 de ahí para abajo.
+ */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}

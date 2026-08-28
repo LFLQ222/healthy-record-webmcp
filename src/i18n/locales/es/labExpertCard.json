@@ -1,0 +1,30 @@
+{
+  "loading": "El especialista en laboratorio está analizando tus resultados…",
+  "error": {
+    "loadFailed": "No se pudo cargar el análisis.",
+    "regenerateFailed": "No se pudo regenerar el análisis."
+  },
+  "retry": "Reintentar",
+  "empty": "Sin analitos alterados registrados. El análisis especializado se activará cuando haya hallazgos fuera de rango.",
+  "header": {
+    "title": "Especialista en laboratorio",
+    "stats": "{{analytes}} analitos alterados · {{measurements}} mediciones",
+    "cachedSuffix": " · caché"
+  },
+  "regenerating": "Regenerando",
+  "regenerate": "Regenerar",
+  "redFlags": {
+    "title": "Alertas críticas"
+  },
+  "diagnoses": {
+    "title": "Diagnósticos probables",
+    "disclaimer": "Sugerencias generadas por inteligencia artificial con base en los datos cargados. No constituyen diagnóstico médico ni sustituyen la valoración clínica del profesional tratante.",
+    "fullEvidence": "Evidencia completa"
+  },
+  "evidence": {
+    "more": "+{{count}} más"
+  },
+  "followUps": {
+    "title": "Seguimiento sugerido"
+  }
+}

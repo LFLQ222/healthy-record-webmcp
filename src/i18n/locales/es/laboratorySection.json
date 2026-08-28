@@ -1,0 +1,102 @@
+{
+  "status": {
+    "high": "Alto",
+    "low": "Bajo",
+    "abnormal": "Anormal",
+    "positive": "Positivo",
+    "negative": "Negativo",
+    "notAvailable": "N/D",
+    "normal": "Normal"
+  },
+  "graph": {
+    "normal": "Normal",
+    "high": "Alto",
+    "low": "Bajo",
+    "normalRange": "Rango normal",
+    "min": "Mín: {{value}} {{unit}}",
+    "max": "Máx: {{value}} {{unit}}",
+    "dateLabel": "Fecha: {{label}}",
+    "measurements": "{{count}} mediciones"
+  },
+  "header": {
+    "title": "Estudios de laboratorio",
+    "analytesExtracted": "{{count}} analitos extraídos",
+    "subtitleDefault": "Gestión de documentos y resultados"
+  },
+  "filter": {
+    "study": "Estudio",
+    "allStudies": "Todos los estudios"
+  },
+  "upload": {
+    "dropHere": "Suelta aquí para subir",
+    "dropHint": "PDF o imágenes de laboratorio",
+    "processing": "Procesando…",
+    "uploadResults": "Subir resultados",
+    "uploadAria": "Subir estudios de laboratorio",
+    "emptyTitle": "Sube los estudios de laboratorio",
+    "emptyDescription": "Arrastra o haz clic para subir PDFs o imágenes de análisis clínicos. Healthy AI extraerá automáticamente los resultados y valores de referencia.",
+    "selectFiles": "Seleccionar archivos",
+    "supportedFormats": "Formatos soportados: PDF, JPG, PNG, WEBP",
+    "confirmTitle": "Confirmar subida",
+    "nFiles": "{{count}} archivos",
+    "oneFile": "1 archivo",
+    "cancel": "Cancelar",
+    "upload": "Subir",
+    "uploading": "Subiendo…",
+    "previewTitle": "Vista previa"
+  },
+  "ocr": {
+    "analyzing": "Analizando documento con Healthy AI…",
+    "found": "{{count}} analitos encontrados — buscando más…",
+    "processingPages": "Procesando páginas. Esto puede tomar unos momentos…"
+  },
+  "notify": {
+    "uploaded": "Documentos subidos. Analizando con Healthy AI…",
+    "uploadError": "Error al subir documentos",
+    "openError": "No se pudo abrir el documento",
+    "noAnalytes": "No se encontraron analitos en este documento",
+    "reprocessed": "Reprocesado con Healthy AI: {{count}} analitos extraídos",
+    "reprocessError": "Error al reprocesar el documento"
+  },
+  "doc": {
+    "defaultViewerTitle": "Documento",
+    "defaultName": "Documento de laboratorio",
+    "fallbackName": "documento",
+    "unknownDate": "Fecha desconocida",
+    "analytes": "{{count}} analitos",
+    "abnormal": "{{count}} alterados",
+    "pages": "{{count}} págs",
+    "viewOriginal": "Ver original",
+    "viewOriginalAria": "Ver documento original",
+    "reprocess": "Reprocesar con Healthy AI",
+    "reprocessAria": "Reprocesar con IA",
+    "delete": "Eliminar",
+    "deleteAria": "Eliminar documento",
+    "collapse": "Colapsar",
+    "expand": "Expandir",
+    "page": "Página {{page}}",
+    "results": "Resultados",
+    "noRefRange": "Sin rango de referencia"
+  },
+  "analytes": {
+    "title": "Analitos extraídos",
+    "all": "Todos",
+    "abnormal": "Alterados ({{count}})",
+    "searchPlaceholder": "Buscar analito o estudio… (ej. glucosa, biometría hemática)",
+    "clearSearchAria": "Limpiar búsqueda",
+    "ref": "Ref: {{low}} — {{high}}",
+    "pageShort": "Pág. {{page}}",
+    "measurements": "{{count}} mediciones",
+    "noResultsFor": "Sin resultados para “{{term}}”",
+    "noAnalytes": "No hay analitos para mostrar",
+    "clearSearch": "Limpiar búsqueda",
+    "prev": "← Anterior",
+    "next": "Siguiente →",
+    "pagination": "Página {{page}} de {{total}} · {{count}} resultados"
+  },
+  "viewer": {
+    "openNewTab": "Abrir en nueva pestaña",
+    "close": "Cerrar",
+    "loadError": "No se pudo cargar el documento"
+  }
+}

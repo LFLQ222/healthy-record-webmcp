@@ -1,0 +1,27 @@
+# Secrets — never commit, even if dragged in from the private repo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+serviceAccount*.json
+
+# Dependencies & builds
+node_modules/
+public/pdfjs/
+dist/
+build/
+.next/
+out/
+coverage/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log

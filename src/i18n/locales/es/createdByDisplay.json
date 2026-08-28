@@ -1,0 +1,7 @@
+{
+  "system": "Sistema",
+  "patient": "Paciente",
+  "doctorName": "Dr. {{name}}",
+  "license": "Cédula: {{license}}",
+  "clinic": "Clínica: {{clinic}}"
+}

@@ -1,0 +1,168 @@
+{
+  "title": "Notas de evolución",
+  "subtitle": "Historial clínico SOAP firmado",
+  "newNote": "Nueva nota",
+  "noteTitle": "Nota de evolución",
+  "doctorName": "Dr. {{first}} {{last}}",
+  "status": {
+    "signed": "Firmada",
+    "draft": "Borrador",
+    "amended": "Firmada · editada"
+  },
+  "tooltip": {
+    "viewPdf": "Ver PDF",
+    "openTab": "Abrir en pestaña",
+    "signedCannotDelete": "Una nota firmada no puede eliminarse (NOM-004)",
+    "delete": "Eliminar",
+    "edit": "Editar nota",
+    "history": "Historial de cambios",
+    "notAuthor": "Solo el autor puede editar esta nota"
+  },
+  "aria": {
+    "viewPdf": "Ver PDF de la nota",
+    "openTab": "Abrir nota en nueva pestaña",
+    "deleteNote": "Eliminar nota",
+    "closeNewDialog": "Cerrar diálogo de nueva nota",
+    "closeViewer": "Cerrar visor",
+    "editNote": "Editar nota de evolución",
+    "openHistory": "Ver historial de cambios",
+    "closeHistory": "Cerrar historial de cambios"
+  },
+  "empty": {
+    "title": "Sin notas registradas",
+    "description": "Crea la primera nota de evolución para iniciar el historial clínico firmado."
+  },
+  "dialog": {
+    "newTitle": "Nueva nota de evolución",
+    "newSubtitle": "Formato SOAP · campos clínicos obligatorios",
+    "editTitle": "Editar nota de evolución",
+    "editSubtitle": "El texto original se conserva en el historial"
+  },
+  "soap": {
+    "heading": "SOAP — subjetivo, objetivo, análisis, plan",
+    "subjective": {
+      "label": "Subjetivo",
+      "placeholder": "Síntomas referidos, motivo de consulta…"
+    },
+    "objective": {
+      "label": "Objetivo",
+      "placeholder": "Exploración física, signos vitales, estudios…"
+    },
+    "assessment": {
+      "label": "Análisis",
+      "placeholder": "Impresión diagnóstica, interpretación clínica…"
+    },
+    "plan": {
+      "label": "Plan",
+      "placeholder": "Plan terapéutico, estudios, seguimiento…"
+    }
+  },
+  "required": "Requerido",
+  "treatment": {
+    "heading": "Tratamiento y diagnóstico",
+    "diagnoses": {
+      "label": "Diagnósticos",
+      "placeholder": "Un diagnóstico por línea",
+      "helper": "Se listarán en el reporte final"
+    },
+    "medications": {
+      "label": "Medicamentos",
+      "placeholder": "Un medicamento por línea",
+      "helper": "Se incluyen en la receta integrada"
+    },
+    "procedures": {
+      "label": "Procedimientos",
+      "placeholder": "Procedimientos realizados en consultorio…"
+    },
+    "indications": {
+      "label": "Indicaciones generales",
+      "placeholder": "Dieta, cuidados, reposo, restricciones…"
+    }
+  },
+  "signHint": "Quedará firmada a tu nombre, con fecha y hora.",
+  "cancel": "Cancelar",
+  "signing": "Firmando…",
+  "signAndSave": "Firmar y guardar",
+  "pdf": {
+    "title": "Visor de documento",
+    "subtitle": "Nota firmada en PDF"
+  },
+  "close": "Cerrar",
+  "openTab": "Abrir en pestaña",
+  "delete": {
+    "title": "Eliminar nota",
+    "subtitle": "Esta acción no se puede deshacer",
+    "confirm": "¿Seguro que deseas eliminar esta nota de evolución del expediente?",
+    "button": "Eliminar",
+    "deleting": "Eliminando…"
+  },
+  "toast": {
+    "noteDeleted": "Nota eliminada",
+    "deleteFailed": "No se pudo eliminar la nota",
+    "saveFailed": "No se pudo guardar la nota",
+    "noteSaved": "Nota guardada",
+    "pdfLoadFailed": "No se pudo cargar el PDF",
+    "noteUpdated": "Cambios guardados",
+    "updateFailed": "No se pudieron guardar los cambios",
+    "loadFailed": "No se pudo abrir la nota",
+    "staleNote": "Alguien más cambió esta nota. Recárgala antes de guardar."
+  },
+  "months": {
+    "jan": "ene",
+    "feb": "feb",
+    "mar": "mar",
+    "apr": "abr",
+    "may": "may",
+    "jun": "jun",
+    "jul": "jul",
+    "aug": "ago",
+    "sep": "sep",
+    "oct": "oct",
+    "nov": "nov",
+    "dec": "dic"
+  },
+  "noteTitleLabel": "Título de la nota",
+  "noteTitlePlaceholder": "Ej. Control de hipertensión",
+  "saveChanges": "Guardar cambios",
+  "saving": "Guardando…",
+  "editHint": "Se conserva el texto anterior y queda registrado quién hizo el cambio.",
+  "amend": {
+    "label": "Motivo del cambio",
+    "placeholder": "Error de captura, información adicional…",
+    "helper": "Obligatorio: queda en el expediente junto al cambio.",
+    "graceHelper": "Opcional durante los primeros 10 minutos tras firmar."
+  },
+  "history": {
+    "title": "Historial de cambios",
+    "subtitle": "Quién cambió qué, y qué decía antes",
+    "original": "Versión original",
+    "originalBy": "Redactada por Dr. {{first}} {{last}}",
+    "noReason": "Sin motivo indicado",
+    "empty": "Esta nota no se ha editado",
+    "revision": "Revisión {{n}}",
+    "changedBy": "Dr. {{first}} {{last}}",
+    "emptyValue": "(vacío)",
+    "showMore": "Ver completo",
+    "showLess": "Ver menos",
+    "loadFailed": "No se pudo cargar el historial",
+    "fields": {
+      "title": "Título",
+      "subjective": "Subjetivo",
+      "objective": "Objetivo",
+      "assessment": "Análisis",
+      "plan": "Plan",
+      "content": "Notas adicionales",
+      "procedures": "Procedimientos",
+      "indications": "Indicaciones generales",
+      "diagnoses": "Diagnósticos",
+      "medications": "Medicamentos"
+    }
+  },
+  "meta": {
+    "editedBy": "editada el {{date}} por Dr. {{name}}"
+  },
+  "conflict": {
+    "hint": "Esta nota cambió mientras la editabas. Recárgala para no borrar ese cambio.",
+    "reload": "Recargar nota"
+  }
+}

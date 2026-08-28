@@ -1,0 +1,8 @@
+{
+  "errorLoadingHistory": "Error loading history",
+  "history": "History",
+  "close": "Close",
+  "notEnoughData": "There is not enough historical data to plot this analyte.",
+  "notEnoughDataVital": "There are not enough recorded measurements to plot this vital sign.",
+  "needTwoMeasurements": "At least 2 measurements on different dates are required."
+}
