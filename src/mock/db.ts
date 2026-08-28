@@ -32,6 +32,9 @@ export const DOCTOR_MIN = {
   email: 'dr.herrera@demo.invalid',
 };
 
+/** Notes are stored with their owner so charts never leak into each other. */
+export type StoredNote = EvolutionNoteFull & { patientId: string };
+
 const doctorRef = { ...DOCTOR_MIN, role: 'doctor', professionalLicense: '10203040' } as UserBasic & {
   role: string;
   professionalLicense: string;
@@ -169,6 +172,25 @@ const lab = (
 const QS = 'Química Sanguínea';
 const BH = 'Biometría Hemática';
 const EGO = 'Examen General de Orina';
+const PT = 'Perfil Tiroideo';
+
+// Filler-patient rows: same shape, explicit patient, no source PDF.
+const labP = (
+  patientId: string,
+  studyDate: string,
+  studyType: string,
+  analyteName: string,
+  analyteNormalized: string,
+  value: number | string,
+  unit: string | undefined,
+  refLow: number | undefined,
+  refHigh: number | undefined,
+  status: LabResultStatus,
+): LabResult => ({
+  ...lab(undefined, studyDate, studyType, analyteName, analyteNormalized, value, unit, refLow, refHigh, status),
+  id: `lab-${patientId}-${++labSeq}`,
+  patientId,
+});
 
 export const LAB_RESULTS: LabResult[] = [
   // ── Study 1 · 2024-03-15 · QS 27 elementos ────────────────────────────────
@@ -222,6 +244,23 @@ export const LAB_RESULTS: LabResult[] = [
   lab('doc-lab-4', '2026-01-14', QS, 'Triglicéridos', 'trigliceridos', 189, 'mg/dL', undefined, 150, 'high', '< 150'),
   lab('doc-lab-4', '2026-01-14', QS, 'Colesterol HDL', 'hdl', 37, 'mg/dL', 40, undefined, 'low', '> 40'),
   lab('doc-lab-4', '2026-01-14', QS, 'Microalbuminuria', 'microalbuminuria', 46, 'mg/g', undefined, 30, 'high', '< 30'),
+
+  // ── Filler charts: enough real content that opening another patient
+  //    doesn't break the illusion; no buried signal here on purpose. ─────────
+  labP('pat-003', '2025-11-18', QS, 'Glucosa', 'glucosa', 96, 'mg/dL', 70, 100, 'normal'),
+  labP('pat-003', '2025-11-18', QS, 'Creatinina', 'creatinina suero', 1.05, 'mg/dL', 0.6, 1.2, 'normal'),
+  labP('pat-003', '2025-11-18', QS, 'Colesterol total', 'colesterol total', 228, 'mg/dL', undefined, 200, 'high'),
+  labP('pat-003', '2025-11-18', QS, 'Colesterol LDL', 'ldl', 152, 'mg/dL', undefined, 100, 'high'),
+  labP('pat-003', '2025-11-18', QS, 'Colesterol HDL', 'hdl', 42, 'mg/dL', 40, undefined, 'normal'),
+  labP('pat-003', '2025-11-18', QS, 'Triglicéridos', 'trigliceridos', 163, 'mg/dL', undefined, 150, 'high'),
+  labP('pat-003', '2025-11-18', QS, 'Ácido úrico', 'acido urico', 7.6, 'mg/dL', 3.5, 7.2, 'high'),
+
+  labP('pat-006', '2025-10-02', PT, 'TSH', 'tsh', 6.8, 'µUI/mL', 0.4, 4.5, 'high'),
+  labP('pat-006', '2025-10-02', PT, 'T4 libre', 't4 libre', 1.1, 'ng/dL', 0.8, 1.8, 'normal'),
+  labP('pat-006', '2025-10-02', BH, 'Hemoglobina', 'hemoglobina', 12.9, 'g/dL', 12, 15.5, 'normal'),
+  labP('pat-006', '2025-10-02', QS, 'Glucosa', 'glucosa', 88, 'mg/dL', 70, 100, 'normal'),
+  labP('pat-006', '2026-02-10', PT, 'TSH', 'tsh', 4.1, 'µUI/mL', 0.4, 4.5, 'normal'),
+  labP('pat-006', '2026-02-10', PT, 'T4 libre', 't4 libre', 1.3, 'ng/dL', 0.8, 1.8, 'normal'),
 ];
 
 // ---------------------------------------------------------------------------
@@ -248,6 +287,13 @@ export const VITALS: Record<string, PatientVitalRec[]> = {
     vital('vit-2', '2024-10-09', { heightM: 1.71, weightKg: 87.1, bmi: 29.8, systole: 132, diastole: 84, heartRate: 80, temperatureC: 36.4 }),
     vital('vit-1', '2024-03-15', { heightM: 1.71, weightKg: 88.4, bmi: 30.2, systole: 128, diastole: 82, heartRate: 78, temperatureC: 36.6, oxygenSaturationPct: 97, respRate: 16 }),
   ],
+  'pat-003': [
+    vital('vit-j1', '2025-11-18', { heightM: 1.68, weightKg: 79.2, bmi: 28.1, systole: 134, diastole: 82, heartRate: 71, temperatureC: 36.5 }),
+  ],
+  'pat-006': [
+    vital('vit-g2', '2026-02-10', { heightM: 1.55, weightKg: 61.4, bmi: 25.6, systole: 126, diastole: 76, heartRate: 68, temperatureC: 36.3, oxygenSaturationPct: 95 }),
+    vital('vit-g1', '2025-10-02', { heightM: 1.55, weightKg: 62.8, bmi: 26.1, systole: 130, diastole: 78, heartRate: 72, temperatureC: 36.4 }),
+  ],
 };
 
 // ---------------------------------------------------------------------------
@@ -257,13 +303,15 @@ export const VITALS: Record<string, PatientVitalRec[]> = {
 // ---------------------------------------------------------------------------
 
 const note = (
+  patientId: string,
   id: string,
   createdAt: string,
   title: string,
   soap: { s: string; o: string; a: string; p: string },
   diagnoses: string[],
   medications: string[],
-): EvolutionNoteFull => ({
+): StoredNote => ({
+  patientId,
   id,
   status: 'SIGNED',
   title,
@@ -279,8 +327,9 @@ const note = (
   medications: { items: medications },
 });
 
-export const NOTES: EvolutionNoteFull[] = [
+export const NOTES: StoredNote[] = [
   note(
+    INDEX_PATIENT_ID,
     'note-5',
     '2026-01-14',
     'Control DM2 / HTA',
@@ -294,6 +343,7 @@ export const NOTES: EvolutionNoteFull[] = [
     ['Metformina 850 mg c/12 h', 'Glibenclamida 5 mg c/24 h', 'Atorvastatina 20 mg c/24 h', 'Losartán 50 mg c/24 h'],
   ),
   note(
+    INDEX_PATIENT_ID,
     'note-4',
     '2025-09-02',
     'Consulta por IVRS',
@@ -307,6 +357,7 @@ export const NOTES: EvolutionNoteFull[] = [
     ['Paracetamol 500 mg PRN'],
   ),
   note(
+    INDEX_PATIENT_ID,
     'note-3',
     '2025-04-22',
     'Control DM2 c/ labs',
@@ -320,6 +371,7 @@ export const NOTES: EvolutionNoteFull[] = [
     ['Metformina 850 mg c/12 h', 'Atorvastatina 20 mg c/24 h', 'Losartán 50 mg c/24 h'],
   ),
   note(
+    INDEX_PATIENT_ID,
     'note-2',
     '2024-10-09',
     'Control semestral DM2',
@@ -333,6 +385,7 @@ export const NOTES: EvolutionNoteFull[] = [
     ['Metformina 850 mg c/12 h', 'Atorvastatina 20 mg c/24 h'],
   ),
   note(
+    INDEX_PATIENT_ID,
     'note-1',
     '2024-03-15',
     'Primera consulta — control DM2',
@@ -344,6 +397,50 @@ export const NOTES: EvolutionNoteFull[] = [
     },
     ['E11.9 — Diabetes mellitus tipo 2', 'E66.0 — Obesidad', 'E78.5 — Dislipidemia'],
     ['Metformina 850 mg c/12 h', 'Atorvastatina 20 mg c/24 h'],
+  ),
+
+  // ── Filler charts ─────────────────────────────────────────────────────────
+  note(
+    'pat-003',
+    'note-j1',
+    '2025-11-18',
+    'Control HTA / dislipidemia',
+    {
+      s: 'Asintomático. Buen apego a tx. Camina a diario.',
+      o: 'TA 134/82, FC 71, peso 79.2 kg. QS: glucosa 96, cr 1.05. Perfil lipídico fuera de meta (LDL 152, TG 163). AU 7.6.',
+      a: 'HTA en control aceptable. Dislipidemia fuera de meta. Hiperuricemia asintomática.',
+      p: 'Se sube atorvastatina a 40 mg c/24 h. Dieta baja en purinas. Control c/ labs en 4 meses.',
+    },
+    ['I10 — Hipertensión esencial', 'E78.5 — Dislipidemia'],
+    ['Losartán 100 mg c/24 h', 'Atorvastatina 40 mg c/24 h'],
+  ),
+  note(
+    'pat-006',
+    'note-g2',
+    '2026-02-10',
+    'Control hipotiroidismo — TSH normalizada',
+    {
+      s: 'Refiere mejoría de fatiga y caída de cabello. Sin palpitaciones.',
+      o: 'TA 126/76, peso 61.4 kg. PT: TSH 4.1 (previa 6.8), T4L 1.3. Rodillas c/ crepitación bilateral, sin derrame.',
+      a: 'Hipotiroidismo primario en control tras ajuste. Gonartrosis bilateral estable.',
+      p: 'Continúa levotiroxina 75 µg c/24 h en ayuno. Paracetamol PRN. PT de control en 6 meses.',
+    },
+    ['E03.9 — Hipotiroidismo, no especificado', 'M17.0 — Gonartrosis primaria bilateral'],
+    ['Levotiroxina 75 µg c/24 h', 'Paracetamol 500 mg PRN'],
+  ),
+  note(
+    'pat-006',
+    'note-g1',
+    '2025-10-02',
+    'Ajuste de levotiroxina',
+    {
+      s: 'Fatiga y estreñimiento de meses. Dosis previa 50 µg.',
+      o: 'TA 130/78. PT: TSH 6.8 (alta), T4L 1.1. BH s/ alteraciones.',
+      a: 'Hipotiroidismo subcompensado.',
+      p: 'Se ajusta levotiroxina a 75 µg c/24 h. PT de control en 3-4 meses.',
+    },
+    ['E03.9 — Hipotiroidismo, no especificado'],
+    ['Levotiroxina 75 µg c/24 h'],
   ),
 ];
 
@@ -474,8 +571,50 @@ const indexOverview: PatientOverview = {
   },
 };
 
+const jorgeOverview: PatientOverview = {
+  ...emptyOverview(PATIENTS[2]),
+  metrics: { citasProximas: 0, resultadosNuevos: 1, medicamentos: 2, alertas: 0, hallazgos: 0 },
+  trafficLight: 'verde',
+  summary:
+    'Masculino de 69 años con HTA de larga evolución y dislipidemia, en control aceptable. Última QS (nov-2025) con perfil lipídico fuera de meta (LDL 152) e hiperuricemia asintomática; glucemia y función renal normales. Se intensificó estatina.',
+  diagnoses: [
+    { id: 'dx-j1', ownerId: 'pat-003', code: 'I10', description: 'Hipertensión esencial (primaria)', status: 'ongoing', onsetDate: '2014-05-01', codeSystem: 'icd10', createdAt: '2025-11-18T17:00:00Z', updatedAt: '2025-11-18T17:00:00Z' },
+    { id: 'dx-j2', ownerId: 'pat-003', code: 'E78.5', description: 'Hiperlipidemia, no especificada', status: 'ongoing', onsetDate: '2020-02-01', codeSystem: 'icd10', createdAt: '2025-11-18T17:00:00Z', updatedAt: '2025-11-18T17:00:00Z' },
+  ],
+  medications: [
+    { id: 'med-j1', ownerId: 'pat-003', name: 'Losartán', dose: '100 mg', frequency: 'c/24 h', startDate: '2014-06-01', createdAt: '2025-11-18T17:00:00Z', updatedAt: '2025-11-18T17:00:00Z' },
+    { id: 'med-j2', ownerId: 'pat-003', name: 'Atorvastatina', dose: '40 mg', frequency: 'c/24 h', startDate: '2025-11-18', createdAt: '2025-11-18T17:00:00Z', updatedAt: '2025-11-18T17:00:00Z' },
+  ],
+  vitals: VITALS['pat-003'],
+};
+
+const guadalupeOverview: PatientOverview = {
+  ...emptyOverview(PATIENTS[5]),
+  metrics: { citasProximas: 1, resultadosNuevos: 2, medicamentos: 2, alertas: 0, hallazgos: 0 },
+  trafficLight: 'verde',
+  summary:
+    'Femenina de 78 años con hipotiroidismo primario, en control tras ajuste de levotiroxina (TSH 6.8 → 4.1 µUI/mL entre oct-2025 y feb-2026). Gonartrosis bilateral estable con manejo sintomático. Sin alertas activas.',
+  diagnoses: [
+    { id: 'dx-g1', ownerId: 'pat-006', code: 'E03.9', description: 'Hipotiroidismo, no especificado', status: 'ongoing', onsetDate: '2018-09-01', codeSystem: 'icd10', createdAt: '2026-02-10T17:00:00Z', updatedAt: '2026-02-10T17:00:00Z' },
+    { id: 'dx-g2', ownerId: 'pat-006', code: 'M17.0', description: 'Gonartrosis primaria bilateral', status: 'ongoing', onsetDate: '2021-03-01', codeSystem: 'icd10', createdAt: '2026-02-10T17:00:00Z', updatedAt: '2026-02-10T17:00:00Z' },
+  ],
+  medications: [
+    { id: 'med-g1', ownerId: 'pat-006', name: 'Levotiroxina', dose: '75 µg', frequency: 'c/24 h', startDate: '2025-10-02', createdAt: '2026-02-10T17:00:00Z', updatedAt: '2026-02-10T17:00:00Z' },
+    { id: 'med-g2', ownerId: 'pat-006', name: 'Paracetamol', dose: '500 mg', frequency: 'PRN', startDate: '2021-03-01', createdAt: '2026-02-10T17:00:00Z', updatedAt: '2026-02-10T17:00:00Z' },
+  ],
+  vitals: VITALS['pat-006'],
+};
+
+const FILLER_OVERVIEWS: Record<string, PatientOverview> = {
+  'pat-003': jorgeOverview,
+  'pat-006': guadalupeOverview,
+};
+
 export const OVERVIEWS: Record<string, PatientOverview> = Object.fromEntries(
-  PATIENTS.map((p) => [p.id, p.id === INDEX_PATIENT_ID ? indexOverview : emptyOverview(p)]),
+  PATIENTS.map((p) => [
+    p.id,
+    p.id === INDEX_PATIENT_ID ? indexOverview : FILLER_OVERVIEWS[p.id] ?? emptyOverview(p),
+  ]),
 );
 
 // ---------------------------------------------------------------------------

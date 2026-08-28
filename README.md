@@ -26,6 +26,16 @@ and the chart moves, step by visible step:
 
 Every tool invocation announces itself with an on-screen "Agent: …" pill first — agent-driven UI movement is always attributable at a glance.
 
+![plot_lab_trend — the agent navigates the chart to Labs and opens the creatinine trend dialog; the line climbs out of the reference band](docs/screenshots/02-plot-lab-trend.png)
+
+| `get_chart_summary` — the chart the physician opens | `highlight_findings` — out-of-range cards pulse, "Agent:" pill below |
+|---|---|
+| ![Chart summary view with traffic light, findings and problem list](docs/screenshots/01-chart-summary.png) | ![Laboratory grid with out-of-range analytes highlighted and the agent activity pill](docs/screenshots/03-highlight-findings.png) |
+
+| `draft_note` — the agent's DRAFT lands on top, only the physician can Sign | |
+|---|---|
+| ![Notes section with the agent-drafted note in DRAFT state and its Sign button](docs/screenshots/04-draft-note-sign.png) | |
+
 ## Why this use case is a strong fit for WebMCP
 
 **No hospital hands its EHR credentials to an external agent.** Ever. That single fact rules out the classic integration paths: an external MCP server needs service credentials and an audit story; API integrations need contracts, scopes and a security review per client.

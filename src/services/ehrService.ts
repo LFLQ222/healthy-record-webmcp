@@ -669,27 +669,31 @@ export async function deletePatientVital(patientId: string, vitalId: string): Pr
 
 let noteSeq = 100;
 
-export async function listEvolutionNotes(_patientId: string): Promise<EvolutionNoteMinimal[]> {
+export async function listEvolutionNotes(patientId: string): Promise<EvolutionNoteMinimal[]> {
   await delay(280);
-  return NOTES.map(({ subjective, objective, assessment, plan, content, procedures, indications, diagnoses, medications, ...minimal }) => ({
-    ...minimal,
-  })).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  return NOTES.filter((n) => n.patientId === patientId)
+    .map(({ patientId: _pid, subjective, objective, assessment, plan, content, procedures, indications, diagnoses, medications, ...minimal }) => ({
+      ...minimal,
+    }))
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
 export async function getEvolutionNote(noteId: string): Promise<EvolutionNoteFull> {
   await delay(200);
   const n = NOTES.find((x) => x.id === noteId);
   if (!n) throw httpError(404, 'Nota no encontrada');
-  return structuredClone(n);
+  const { patientId: _pid, ...full } = structuredClone(n);
+  return full;
 }
 
 export async function signEvolutionNote(
-  _patientId: string,
+  patientId: string,
   input: CreateEvolutionNoteInput,
   _signingPassword?: string,
 ): Promise<EvolutionNoteMinimal> {
   await delay(350);
-  const created: EvolutionNoteFull = {
+  const created: (typeof NOTES)[number] = {
+    patientId,
     id: `note-${++noteSeq}`,
     status: 'SIGNED',
     title: input.title ?? 'Nota de evolución',
@@ -716,11 +720,12 @@ export async function signEvolutionNote(
  * clinical content on their own.
  */
 export async function createDraftNote(
-  _patientId: string,
+  patientId: string,
   input: CreateEvolutionNoteInput,
 ): Promise<EvolutionNoteFull> {
   await delay(300);
-  const draft: EvolutionNoteFull = {
+  const draft: (typeof NOTES)[number] = {
+    patientId,
     id: `note-${++noteSeq}`,
     status: 'DRAFT',
     title: input.title ?? 'Borrador de nota',

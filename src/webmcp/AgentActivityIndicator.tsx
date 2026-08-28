@@ -16,6 +16,8 @@ export function AgentActivityIndicator() {
 
   return (
     <Box
+      role="status"
+      aria-live="polite"
       sx={{
         position: 'fixed',
         bottom: 22,
