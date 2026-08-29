@@ -65,7 +65,7 @@ The physician brings clinical judgment and legal responsibility; the agent bring
 
 Judges can evaluate in either browser:
 
-On first visit the app asks: **guided tour or free exploration**. The tour is a floating checklist that checks itself off as things actually happen — it detects your navigation, each WebMCP tool your agent invokes, and your Sign click. No medical background needed.
+On first visit the app asks: **guided tour or free exploration**. The tour is a floating checklist that checks itself off as things actually happen — it detects your navigation, each WebMCP tool your agent invokes, and your Sign click. No medical background needed. Restart it anytime from the **Guided tour** chip (patient list), the **?** card (chart) — or just tell your agent *"give me a tour of this demo"*: the onboarding itself is a WebMCP tool.
 
 **Google Chrome (149+)**
 1. Enable `chrome://flags/#enable-webmcp-testing` → relaunch
@@ -94,6 +94,7 @@ The UI chrome is in English (toggle to Spanish in the header); the clinical data
 |---|---|---|---|
 | `list_patients` | Patient list | read | Physician's patients (id, name, age, sex) |
 | `open_patient_chart` | Patient list | read | Opens a chart by id or partial name — swaps the toolset |
+| `start_guided_tour` | Both | read | Starts/restarts the self-checking guided tour — onboarding is agent-native too |
 | `get_chart_summary` | Open chart | read | Structured deltas since the previous visit: labs with prior values, range crossings, vitals, med changes, problems, alerts |
 | `read_notes` | Open chart | read | SOAP evolution notes with status and content (`untrustedContentHint`: free-text clinical Spanish) — lets the agent cite what the physician wrote and when |
 | `plot_lab_trend` | Open chart | read | Navigates to Labs and opens the analyte trend dialog on screen; returns the series (accepts English or Spanish analyte names) |

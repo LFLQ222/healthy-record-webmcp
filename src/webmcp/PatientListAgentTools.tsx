@@ -7,6 +7,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { listMyPatients } from '../services/ehrService';
+import { makeTourTool } from '../tour/tourTool';
 import type { WebMcpTool } from './modelContext';
 import { useWebMcpTools } from './useWebMcpTools';
 
@@ -78,6 +79,7 @@ export function PatientListAgentTools() {
           };
         },
       },
+      makeTourTool(),
     ],
     [navigate],
   );

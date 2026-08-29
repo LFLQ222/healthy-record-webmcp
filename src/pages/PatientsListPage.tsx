@@ -26,6 +26,7 @@ import { useAuth } from '../context/AuthContext';
 import { PatientListAgentTools } from '../webmcp/PatientListAgentTools';
 import { AgentPromptHints } from '../webmcp/AgentPromptHints';
 import { WebMcpStatusChip } from '../webmcp/WebMcpStatusChip';
+import { setTourMode } from '../tour/tourState';
 
 /**
  * Doctor's patient list — the demo's landing view. Opening a chart navigates
@@ -105,6 +106,18 @@ export default function PatientsListPage() {
               color: BRAND.primary,
             }}
           />
+          <Chip
+            size="small"
+            label="Guided tour"
+            onClick={() => setTourMode('tutorial')}
+            sx={{
+              fontSize: '0.68rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              bgcolor: alpha(BRAND.primary, isDark ? 0.14 : 0.08),
+              color: BRAND.primary,
+            }}
+          />
           <WebMcpStatusChip />
           <LanguageToggle />
         </Stack>
@@ -121,7 +134,7 @@ export default function PatientsListPage() {
           })}
         </Typography>
 
-        <AgentPromptHints prompts={['List my patients', "Open Ernesto's chart"]} />
+        <AgentPromptHints prompts={['Give me a tour of this demo', 'List my patients', "Open Ernesto's chart"]} />
 
         <TextField
           fullWidth

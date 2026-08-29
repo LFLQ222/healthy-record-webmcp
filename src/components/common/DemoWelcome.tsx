@@ -9,7 +9,8 @@ import { alpha, Box, Button, Stack, Typography, useTheme } from '@mui/material';
 import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import { BRAND, glassSx, primaryButtonSx } from './designTokens';
+import { BRAND, glassSx, primaryButtonSx, secondaryButtonSx } from './designTokens';
+import { setTourMode } from '../../tour/tourState';
 
 export const WELCOME_STORAGE_KEY = 'hr-demo:welcome-done';
 
@@ -74,7 +75,17 @@ export function DemoWelcome({ open, onDismiss }: Props) {
           </>,
         )}
       </Stack>
-      <Stack direction="row" justifyContent="flex-end" sx={{ mt: 1.5 }}>
+      <Stack direction="row" justifyContent="flex-end" spacing={1} sx={{ mt: 1.5 }}>
+        <Button
+          size="small"
+          onClick={() => {
+            setTourMode('tutorial');
+            onDismiss();
+          }}
+          sx={{ ...secondaryButtonSx(isDark), py: 0.5, fontSize: '0.8rem' }}
+        >
+          Start guided tour
+        </Button>
         <Button size="small" onClick={onDismiss} sx={{ ...primaryButtonSx(isDark), py: 0.5, fontSize: '0.8rem' }}>
           Got it
         </Button>

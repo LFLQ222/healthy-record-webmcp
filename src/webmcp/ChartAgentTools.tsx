@@ -26,6 +26,7 @@ import {
 import type { VitalMetricKey } from '../components/patient/vitalMetrics';
 import { setAgentHighlights } from './agentHighlights';
 import { buildChartDelta } from './chartSummary';
+import { makeTourTool } from '../tour/tourTool';
 import type { WebMcpTool } from './modelContext';
 import { useWebMcpTools } from './useWebMcpTools';
 
@@ -287,6 +288,7 @@ export function ChartAgentTools({ patientId, patientName, onNavigateSection }: P
           };
         },
       },
+      makeTourTool(),
     ];
   }, [patientId, patientName, onNavigateSection, openAnalyteGraph, openVitalGraph, queryClient]);
 

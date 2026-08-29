@@ -57,6 +57,8 @@ export function describeToolCall(toolName: string, params: Record<string, unknow
       return 'Agent: highlighting out-of-range values…';
     case 'draft_note':
       return 'Agent: drafting a note for your review…';
+    case 'start_guided_tour':
+      return 'Agent: starting the guided tour…';
     default:
       return `Agent: running ${toolName}…`;
   }
