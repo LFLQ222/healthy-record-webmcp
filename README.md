@@ -2,7 +2,7 @@
 
 **An agent-native electronic health record: the AI agent works inside the physician's already-authenticated session and drives the live chart UI — no credentials ever leave the hospital.**
 
-Built for the [OpenAI WebMCP Challenge](https://webmcp.devpost.com/) by [Healthy Medical AI](https://www.healthyehr.com), a Mexican health-tech startup. This repository is a public, self-contained slice of our production EHR (Healthy Record) with a fully mocked data layer. **Every patient in this demo is synthetic — no real patient data exists anywhere in this repository or its history.**
+Built for the [OpenAI WebMCP Challenge](https://webmcp.devpost.com/). This repository is a public, self-contained slice of Healthy Record — a production EHR built in Mexico — with a fully mocked data layer. **Every patient in this demo is synthetic — no real patient data exists anywhere in this repository or its history.**
 
 License: MIT · **Live demo: [healthy-record-webmcp.netlify.app](https://healthy-record-webmcp.netlify.app)** · Demo video: _coming with the submission_
 

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Agent-native EHR chart demo for the OpenAI WebMCP Challenge — a public slice of Healthy Record (healthyehr.com) with a fully mocked data layer.",
+  "description": "Agent-native EHR chart demo for the OpenAI WebMCP Challenge — a public slice of a production EHR with a fully mocked data layer.",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

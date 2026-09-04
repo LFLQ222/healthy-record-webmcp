@@ -216,7 +216,7 @@ Alternativa: navegador interno de la app de escritorio de ChatGPT, con GPT-5.6 S
 - [x] Localizar el componente del expediente — `PatientDetailPage.tsx` (ruta `/pacientes/:id`, secciones por query param `?section=`); la gráfica ya existe: `AnalyteGraph` (recharts, con banda de referencia) + `AnalyteGraphProvider.openAnalyteGraph()` — `plot_lab_trend` invoca ese mecanismo, no inventa UI
 - [x] Extraer esquema de paciente y laboratorio — `lab_results` (una fila por analito/estudio: `analyteNormalized`, `valueNumeric`, `unit`, `refLow`/`refHigh`, `status` manual, `studyDate`; historia deduplicada a un punto por día; usar `analyteName: "Creatinina suero"` → LOINC 2160-0), `evolution_notes` (SOAP + DRAFT/SIGNED/AMENDED + revisiones), `users` (`role=patient`, `patientType=demo`)
 - [ ] Confirmar que no se arrastró ningún secreto ni dato real en la extracción — auditoría de los repos fuente hecha el 27-ago; deny-list definida: `.env`, `.verify-shots/`, `auth-header.png`, `deploy/`, `logs/`, interceptores de `services/api.ts`. Verificar archivo por archivo al copiar
-- [x] LICENSE (MIT) en la raíz antes del primer push — a nombre de Healthy Medical AI, S. de R.L. de C.V.
+- [x] LICENSE (MIT) en la raíz antes del primer push — copyright a nombre del autor (sin razón social)
 - [ ] Origin trial de WebMCP para el dominio de producción — **rebajado a opcional** tras leer las reglas oficiales: los jueces acceden "using ChatGPT's in-app browser or Google Chrome with WebMCP enabled", o sea que se espera que activen el flag. El token es defensa en profundidad, no bloqueante
 
 ## 10. Requisitos oficiales de entrega (verificados en Devpost el 27-ago-2026)
