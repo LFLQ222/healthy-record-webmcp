@@ -225,7 +225,7 @@ Cierre **3-sep-2026 1:00 PM PT** (confirmado — la sección 1 tenía razón). J
 
 - [x] **URL viva** — https://healthy-record-webmcp.netlify.app (Netlify, deploy 28-ago). Verificado en producción: `modelContext` presente, chip "Agent · 3 tools", harness dev excluido del build, `Origin-Agent-Cluster: ?1`, deep links SPA OK, 0 errores de consola
 - [ ] **Video < 3 minutos**, público en YouTube, demo claro **con audio**
-- [x] **Repo público** con licencia open source "detectable y visible al tope de la página del repo" — publicado en github.com/LFLQ222/healthy-record-webmcp el 28-ago; GitHub detecta "MIT License" ✓. Falta: llenar About + topics en la UI
+- [x] **Repo público** con licencia open source "detectable y visible al tope de la página del repo" — publicado en github.com/LFLQ222/healthy-record-webmcp el 28-ago; GitHub detecta "MIT License" ✓. About + homepage + topics llenados vía API el 29-ago ✓
 - [ ] **Descripción escrita** que responda exactamente: (1) por qué el caso de uso es fuerte para WebMCP, (2) cómo crea mejor UX, (3) qué pueden hacer personas y agentes **juntos**
 
 Criterios, peso igual: **WebMCP Leverage · Execution · Potential Impact · Creativity & Ambition**. Jueces: Andrew Galloni (Cloudflare), **Alex Nahas (creador de MCP-B)**, Ilya Grigorik (Shopify), Jude Gao (Vercel/Next.js), Justin Rushing (OpenAI, Browser Platform), **Sarah Drasner (Chrome)**, Sean Roberts (Netlify). Todos de plataforma web/infra — **cero perfil salud**: el video y la descripción no pueden asumir contexto clínico.
